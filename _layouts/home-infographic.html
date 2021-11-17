@@ -3,6 +3,10 @@ layout: page
 ---
 {%- assign items = site.data[site.metadata] -%}
 <div class="row">
+  <div class="col-md-12">
+    {% include feature/topic-chart.html topic="energy" %}
+  </div>
+
   <div class="col-md-8">
 
     {% include index/description.html %}
