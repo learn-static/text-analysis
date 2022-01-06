@@ -6,7 +6,7 @@
 
 {% endcomment %}
 
-{%- assign topics = site.data[site.keys] | where: 'Topic', include.topic -%}
+{%- assign topics = site.data.keys_1900_2000 | where: 'Topic', include.topic -%}
 {%- for t in topics -%}
 {%- if t.Topic == include.topic -%}
 <p class="text-center"><strong>{{ t.Topic | capitalize }}:</strong> {{ t.Words }}</p>
