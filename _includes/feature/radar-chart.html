@@ -1,0 +1,45 @@
+{% comment %}
+
+    Embed a line chart, https://www.chartjs.org/docs/latest/charts/radar.html
+    
+    E.G. --> {% include feature/radar-chart.html topics="nationalism;peace;military" %}
+
+{% endcomment %}
+
+{%- assign topics = site.data[site.keys] | where: 'Topic', include.topic -%}
+{%- for t in topics -%}
+{%- if t.Topic == include.topic -%}
+<p class="text-center"><strong>{{ t.Topic | capitalize }}:</strong> {{ t.Words }}</p>
+{%- endif -%}
+{%- endfor -%}
+
+<canvas id="myChart" class="py-5"></canvas>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
+<script>
+const ctx = document.getElementById('myChart');
+const presidents = [
+    {%- for p in site.data[site.topics] -%}
+    {{ p.president | replace: "-", " " | jsonify }} {% unless forloop.last %},{% endunless %}
+    
+    {%- endfor -%}
+]
+const topic = [
+    {%- for p in site.data[site.topics] -%}
+    {{ p[include.topic] | jsonify }}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+]
+const radarChart = new Chart(ctx, {
+    type: 'radar',
+    data: {
+        labels: presidents,
+        datasets: [{
+            label: '{{ include.topic | capitalize }} Topic',
+            data: topic,
+            fill: false,
+            borderColor: 'rgb(75, 192, 192)',
+            tension: 0.1
+        }]
+    },
+});
+</script>
