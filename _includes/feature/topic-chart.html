@@ -6,10 +6,10 @@
 
 {% endcomment %}
 
-{%- assign topics = site.data.keys | where: 'topic', include.topic -%}
+{%- assign topics = site.data[site.keys] | where: 'Topic', include.topic -%}
 {%- for t in topics -%}
-{%- if t.topic == include.topic -%}
-<p class="text-center"><strong>{{ t.topic | capitalize }}:</strong> {{ t.words }}</p>
+{%- if t.Topic == include.topic -%}
+<p class="text-center"><strong>{{ t.Topic | capitalize }}:</strong> {{ t.Words }}</p>
 {%- endif -%}
 {%- endfor -%}
 
@@ -19,12 +19,12 @@
 <script>
 const ctx = document.getElementById('myChart');
 const presidents = [
-    {%- for p in site.data.doctopics -%}
-    {{ p.president | jsonify }}{% unless forloop.last %},{% endunless %}
+    {%- for p in site.data[site.topics] -%}
+    {{ p.president | replace: "-", " " | jsonify }} {% unless forloop.last %},{% endunless %}
     {%- endfor -%}
 ]
 const topic = [
-    {%- for p in site.data.doctopics -%}
+    {%- for p in site.data[site.topics] -%}
     {{ p[include.topic] | jsonify }}{% unless forloop.last %},{% endunless %}
     {%- endfor -%}
 ]
