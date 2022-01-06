@@ -8,9 +8,10 @@
 #
 # featured image is used in home page banner and in meta markup to represent the collection
 # use either an objectid (from an item in this collect), a relative location of an image in this repo (ex. /assets/img/feature.jpg), or a full url to an image elsewhere
-featured-image: demo_001
+# Photo by <a href="https://unsplash.com/@dancalders?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Dan Calderwood</a> on <a href="https://unsplash.com/s/photos/united-states?utm_source=unsplash&utm_medium=referral&utm_content=creditCopyText">Unsplash</a>
+featured-image: /assets/img/sotu-feature-image.jpg
 # optional: add extra padding around collection title for a larger image feature. 
-home-title-y-padding: # Default is 8em
+home-title-y-padding: 9em # Default is 8em
 # optional: change position of background image, center, top, bottom
 home-banner-image-position: # Default is center
 
