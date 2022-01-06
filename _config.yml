@@ -37,6 +37,13 @@ author: CollectionBuilder
 metadata: demo-metadata 
 
 ##########
+# TEXT DATA
+#
+# Set the document topics and topic summaries for visualizations
+topics: doctopics_1900_2000
+keys: keys_1900_2000
+
+##########
 # GOOGLE SERVICES [optional!]
 #
 # leave these blank or comment out to NOT include google code. See docs/google.md
