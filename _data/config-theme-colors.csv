@@ -1,4 +1,4 @@
-color_class,color
+color_class,color,rgba
 primary,
 secondary,
 success,
@@ -7,3 +7,9 @@ warning,
 danger,
 light,
 dark,
+red,"#fff","255,0,0"
+blue,"#0000ff","0,0,255"
+green,"#008000","0,128,0"
+purple,"#800080","128,0,128"
+yellow,"#ffff00","255,255,0"
+orange,"#ffa500","255,165,0"
