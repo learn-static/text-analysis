@@ -10,26 +10,7 @@ Proin consequat ultricies ante, volutpat porttitor dui luctus non.
 
 # Topics
 
-{% assign topics = site.data.keys_1900_2000 %}
-
-<table class="table table-striped" style="max-width: 650px;margin-left: auto;margin-right: auto;">
-    <thead>
-       <tr>
-          <th>Topic</th>
-          <th>Word Count</th>
-          <th>Words</th>
-       </tr>
-    </thead>
-    <tbody>
-    {% for t in topics %}
-    <tr>
-       <td class="topic">{{ t.Topic }}</td>
-       <td class="wordcount center">{{ t.TokenCount }}</td>
-       <td class="words">{{ t.Words }}</td>
-    </tr>
-    {% endfor %}
-    </tbody>
-</table>
+{% include feature/topic-table.html topics="nationalism;legislation;peace;war;military;war and economics;international diplomacy;basic needs" %}
 
 ---
 

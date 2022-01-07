@@ -1,0 +1,31 @@
+{% comment %}
+
+    Embed a table of chosen topics
+    
+    E.G. --> {% include feature/topic-table.html topics="nationalism;legislation;peace;war;military;war and economics;international diplomacy;basic needs" %}
+
+{% endcomment %}
+
+{%- assign topics = include.topics | split: ";" -%}
+
+<table class="table table-striped" style="max-width: 650px;margin-left: auto;margin-right: auto;">
+    <thead>
+       <tr>
+          <th>Topic</th>
+          <th>Word Count</th>
+          <th>Words</th>
+       </tr>
+    </thead>
+    <tbody>
+    {%- for t in topics -%}
+    {%- assign keys = site.data.keys_1900_2000 | where: "Topic", t -%}
+    {%- for k in keys -%}
+    <tr>
+       <td class="topic">{{ k.Topic }}</td>
+       <td class="wordcount center">{{ k.TokenCount }}</td>
+       <td class="words">{{ k.Words }}</td>
+    </tr>
+    {%- endfor -%}
+    {%- endfor -%}
+    </tbody>
+</table>
