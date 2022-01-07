@@ -1,45 +1,55 @@
 {% comment %}
 
-    Embed a line chart, https://www.chartjs.org/docs/latest/charts/radar.html
+    Embed a radar chart, https://www.chartjs.org/docs/latest/charts/radar.html
     
-    E.G. --> {% include feature/radar-chart.html topics="nationalism;peace;military" %}
+    E.G. --> {% include feature/radar-chart.html years="1932;1934" colors="red,blue" topics="nationalism;peace;military" %}
 
 {% endcomment %}
 
-{%- assign topics = site.data[site.keys] | where: 'Topic', include.topic -%}
-{%- for t in topics -%}
-{%- if t.Topic == include.topic -%}
-<p class="text-center"><strong>{{ t.Topic | capitalize }}:</strong> {{ t.Words }}</p>
-{%- endif -%}
-{%- endfor -%}
-
-<canvas id="myChart" class="py-5"></canvas>
+<canvas id="radarChart" class="py-5"></canvas>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script>
-const ctx = document.getElementById('myChart');
-const presidents = [
-    {%- for p in site.data[site.topics] -%}
-    {{ p.president | replace: "-", " " | jsonify }} {% unless forloop.last %},{% endunless %}
-    
+const radctx = document.getElementById('radarChart');
+
+{% assign topics = include.topics | split: ";" %}
+{% assign years = include.years | split: ";" %}
+{% assign colors = include.colors | split: ";" %}
+
+const data = {
+  labels: [
+    {%- for t in topics -%}
+    {{ t | jsonify }}{% unless forloop.last %},{% endunless %}
     {%- endfor -%}
-]
-const topic = [
-    {%- for p in site.data[site.topics] -%}
-    {{ p[include.topic] | jsonify }}{% unless forloop.last %},{% endunless %}
-    {%- endfor -%}
-]
-const radarChart = new Chart(ctx, {
-    type: 'radar',
-    data: {
-        labels: presidents,
-        datasets: [{
-            label: '{{ include.topic | capitalize }} Topic',
-            data: topic,
-            fill: false,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1
-        }]
-    },
+  ],
+  datasets: [{
+    {%- for y in years -%}
+    {%- assign record = site.data[site.topics] | where_exp: 'item', 'item.president contains y' -%}
+    label: {% for r in record %}{{ r.president | replace: "-", " " | jsonify }}{% endfor %},
+    data: [{%- for t in topics -%}{%- for r in record -%}{{ r[t] }}{%- endfor -%}{% unless forloop.last %}, {% endunless %}{%- endfor -%}],
+    fill: true,
+    backgroundColor: 'rgba(255, 99, 132, 0.2)',
+    borderColor: 'rgb(255, 99, 132)',
+    pointBackgroundColor: 'rgb(255, 99, 132)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(255, 99, 132)'
+  {% unless forloop.last %}
+  }, {
+  {% endunless %}
+  {%- endfor -%}
+  }]
+};
+
+const radarChart = new Chart(radctx, {
+  type: 'radar',
+  data: data,
+  options: {
+    elements: {
+      line: {
+        borderWidth: 3
+      }
+    }
+  },
 });
 </script>
