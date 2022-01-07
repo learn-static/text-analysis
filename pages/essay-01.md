@@ -18,7 +18,7 @@ Proin consequat ultricies ante, volutpat porttitor dui luctus non.
 
 # Military
 
-{% include feature/topic-chart.html topic="war and economics" %}
+{% include feature/line-chart.html topic="war and economics" %}
 
 Curabitur ullamcorper maximus mi quis dapibus. Nullam tempus urna id metus pulvinar, non pretium lectus volutpat. Sed mi est, maximus ac maximus at, accumsan et diam. Donec viverra sodales enim a tempus. In eu suscipit odio. Nam augue nulla, dignissim in tempus sed, commodo nec neque. Morbi felis lectus, eleifend non efficitur varius, semper in tortor. Suspendisse maximus massa ac velit posuere, ut congue leo auctor. Praesent non magna quis lorem fringilla mattis id iaculis magna. Donec nec nisi lectus. Pellentesque non volutpat nisl.
 
