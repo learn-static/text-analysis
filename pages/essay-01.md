@@ -14,7 +14,7 @@ Proin consequat ultricies ante, volutpat porttitor dui luctus non.
 
 ---
 
-{% include feature/radar-chart.html years="1934;1945" colors="red,blue" topics="nationalism;peace;military;war and economics;basic needs" %}
+{% include feature/radar-chart.html years="1934;1945;1950" topics="nationalism;peace;military;war and economics;basic needs" %}
 
 # Military
 

@@ -7,7 +7,7 @@ warning,
 danger,
 light,
 dark,
-red,"#fff","255,0,0"
+red,"#fff","255, 99, 132"
 blue,"#0000ff","0,0,255"
 green,"#008000","0,128,0"
 purple,"#800080","128,0,128"
