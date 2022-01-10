@@ -2,9 +2,12 @@
 
     Embed a radar chart, https://www.chartjs.org/docs/latest/charts/radar.html
     
-    E.G. --> {% include feature/radar-chart.html years="1932;1934" colors="red,blue" topics="nationalism;peace;military" %}
+    E.G. --> {% include feature/radar-chart.html years="1932;1934" topics="nationalism;peace;military" %}
 
 {% endcomment %}
+
+{% assign topics = include.topics | split: ";" %}
+{% assign years = include.years | split: ";" %}
 
 <canvas id="radarChart" class="py-5"></canvas>
 
@@ -12,21 +15,14 @@
 <script>
 const radctx = document.getElementById('radarChart');
 
-{% assign topics = include.topics | split: ";" %}
-{% assign years = include.years | split: ";" %}
-{% assign colors = include.colors | split: ";" %}
+var topicData = [
+  {% for y in years %}{%- assign record = site.data[site.topics] | where_exp: 'item', 'item.president contains y' -%}
+  [ {{ y | escape | jsonify }}, {% for r in record %}{{ r.president | replace: "-", " " | jsonify }}{% endfor %}, [{%- for t in topics -%}{%- for r in record -%}{{ r[t] }}{%- endfor -%}{% unless forloop.last %}, {% endunless %}{%- endfor -%}] ]{% unless forloop.last %},{% endunless %}{%- endfor -%}];
 
-const data = {
-  labels: [
-    {%- for t in topics -%}
-    {{ t | jsonify }}{% unless forloop.last %},{% endunless %}
-    {%- endfor -%}
-  ],
-  datasets: [{
-    {%- for y in years -%}
-    {%- assign record = site.data[site.topics] | where_exp: 'item', 'item.president contains y' -%}
-    label: {% for r in record %}{{ r.president | replace: "-", " " | jsonify }}{% endfor %},
-    data: [{%- for t in topics -%}{%- for r in record -%}{{ r[t] }}{%- endfor -%}{% unless forloop.last %}, {% endunless %}{%- endfor -%}],
+let itemData = []
+for (let i = 0; i < topicData.length; i++) itemData.push({
+    label: topicData[i][1],
+    data: topicData[i][2],
     fill: true,
     backgroundColor: 'rgba(255, 99, 132, 0.2)',
     borderColor: 'rgb(255, 99, 132)',
@@ -34,11 +30,15 @@ const data = {
     pointBorderColor: '#fff',
     pointHoverBackgroundColor: '#fff',
     pointHoverBorderColor: 'rgb(255, 99, 132)'
-  {% unless forloop.last %}
-  }, {
-  {% endunless %}
-  {%- endfor -%}
-  }]
+});
+
+const data = {
+  labels: [
+    {%- for t in topics -%}
+    {{ t | jsonify }}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+  ],
+  datasets: itemData
 };
 
 const radarChart = new Chart(radctx, {
