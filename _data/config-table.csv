@@ -1,5 +1,5 @@
 field,display_name
-title,Title
+id,Title
 date,Date
-description,Description
-subject,Subjects
+type,Type
+link,Link

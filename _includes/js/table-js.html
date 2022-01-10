@@ -5,7 +5,7 @@
 (function(){
     $('#item-table').DataTable( {
         // use DataTables ajax load to 
-        ajax: { url: '{{ "/assets/js/metadata.min.json" | relative_url }}', dataSrc: 'objects' },
+        ajax: { url: '{{ "/assets/js/textdata.min.json" | relative_url }}', dataSrc: 'objects' },
         // defer render to speed up large sets
         "deferRender": true,
         // enable pagination 
@@ -20,7 +20,7 @@
             // turn relative link into absolute
             { "render": function ( data ) { return '{{ site.url }}' + data; },"targets": {{ fcount }} },
             // combine link with first column
-            { "render": function ( data, type, row ) { return '<a href="' + row['{{ fcount }}'] +'">'+ data +'</a>'; },"targets": 0 },
+            { "render": function ( data, type, row ) { return '<a href="' + row['{{ fcount }}'] +'" target="_blank" rel="noopener">'+ data +'</a>'; },"targets": 3 },
             // hide the link column
             { "visible": false,  "targets": [ {{ fcount }} ] }
         ],
