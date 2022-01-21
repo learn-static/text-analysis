@@ -12,7 +12,6 @@
     <thead>
        <tr>
           <th>Topic</th>
-          <th>Word Count</th>
           <th>Words</th>
        </tr>
     </thead>
@@ -22,7 +21,6 @@
     {%- for k in keys -%}
     <tr>
        <td class="topic">{{ k.Topic }}</td>
-       <td class="wordcount center">{{ k.TokenCount }}</td>
        <td class="words">{{ k.Words }}</td>
     </tr>
     {%- endfor -%}

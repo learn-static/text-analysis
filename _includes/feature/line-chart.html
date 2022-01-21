@@ -2,15 +2,31 @@
 
     Embed a line chart, https://www.chartjs.org/docs/latest/charts/line.html
     
-    E.G. --> {% include feature/topic-chart.html topic="energy" %}
+    E.G. --> {% include feature/line-chart.html data="party_platforms_20th_century_all" topic="free America" %}
+
+    Options for data value:
+        sotu_20th_century
+        sotu_20th_century_1900_1944
+        sotu_20th_century_1948_2000
+        party_platforms_1900_1944_all
+        party_platforms_1900_1944_democratic
+        party_platforms_1900_1944_republican
+        party_platforms_1948_2000_all
+        party_platforms_1948_2000_democratic
+        party_platforms_1948_2000_republican
+        party_platforms_20th_century_all
+        party_platforms_20th_century_democratic
+        party_platforms_20th_century_republican
 
 {% endcomment %}
 
-{%- assign topics = site.data.keys_1900_2000 | where: 'Topic', include.topic -%}
+{% capture topicdata %}{{ include.data | append: '_topics' }}{% endcapture %}
+{% capture documentdata %}{{ include.data | append: '_documents' }}{% endcapture %}
+{% capture varName %}topic_{{ include.topic | slugify | replace: "-","_" }}{% endcapture %}
+{%- assign topics = site.data.topics[topicdata] | where: 'TopicName', include.topic -%}
+
 {%- for t in topics -%}
-{%- if t.Topic == include.topic -%}
-<p class="text-center"><strong>{{ t.Topic | capitalize }}:</strong> {{ t.Words }}</p>
-{%- endif -%}
+<p class="text-center"><strong>{{ t.TopicName | capitalize }}:</strong> {{ t.Words }}</p>
 {%- endfor -%}
 
 <canvas id="myChart" class="py-5"></canvas>
@@ -19,13 +35,16 @@
 <script>
 const ctx = document.getElementById('myChart');
 const presidents = [
-    {%- for p in site.data[site.topics] -%}
-    {{ p.president | replace: "-", " " | jsonify }} {% unless forloop.last %},{% endunless %}
+    {%- for p in site.data.topics[documentdata] -%}
+    {{ p.id | replace: "-", " " | jsonify }} {% unless forloop.last %},{% endunless %}
     {%- endfor -%}
 ]
 const topic = [
-    {%- for p in site.data[site.topics] -%}
-    {{ p[include.topic] | jsonify }}{% unless forloop.last %},{% endunless %}
+    {%- for p in site.data.topics[documentdata] -%}
+    {% for t in topics -%}
+    {{ p[t.Topic] | jsonify }}
+    {%- endfor -%}
+    {% unless forloop.last %},{% endunless %}
     {%- endfor -%}
 ]
 const myChart = new Chart(ctx, {
