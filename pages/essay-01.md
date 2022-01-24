@@ -14,7 +14,7 @@ Proin consequat ultricies ante, volutpat porttitor dui luctus non.
 
 ---
 
-{% include feature/radar-chart.html years="1934;1945;1950" topics="nationalism;peace;military;war and economics;basic needs" %}
+{% include feature/radar-chart.html data="party_platforms_20th_century_all" years="1964,Goldwater;1964,Johnson;1972,McGovern;1972,Nixon" topics="Cold War;free America;basic rights" %}
 
 # Party Platforms
 
