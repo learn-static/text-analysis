@@ -28,8 +28,8 @@
 
 {%- assign topics = include.topics | split: ";" -%}
 {%- assign docs = include.years | split: ";" -%}
-{%- assign chosendocuments = site.data.topics[documentdata] -%}
 {%- assign chosentopics = site.data.topics[topicdata] -%}
+{%- assign chosendocuments = site.data.topics[documentdata] -%}
 {%- assign colors = site.data.config-theme-colors | where_exp: 'item', 'item.rgba' -%}
 
 <canvas id="radarChart" class="py-5"></canvas>

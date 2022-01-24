@@ -23,9 +23,11 @@
 {% capture topicdata %}{{ include.data | append: '_topics' }}{% endcapture %}
 {% capture documentdata %}{{ include.data | append: '_documents' }}{% endcapture %}
 {% capture varName %}topic_{{ include.topic | slugify | replace: "-","_" }}{% endcapture %}
-{%- assign topics = site.data.topics[topicdata] | where: 'TopicName', include.topic -%}
 
-{%- for t in topics -%}
+{%- assign chosentopics = site.data.topics[topicdata] | where: 'TopicName', include.topic -%}
+{%- assign chosendocuments = site.data.topics[documentdata] -%}
+
+{%- for t in chosentopics -%}
 <p class="text-center"><strong>{{ t.TopicName | capitalize }}:</strong> {{ t.Words }}</p>
 {%- endfor -%}
 
@@ -35,14 +37,14 @@
 <script>
 const ctx = document.getElementById('myChart');
 const presidents = [
-    {%- for p in site.data.topics[documentdata] -%}
-    {{ p.id | replace: "-", " " | jsonify }} {% unless forloop.last %},{% endunless %}
+    {%- for d in chosendocuments -%}
+    {{ d.id | replace: "-", " " | jsonify }} {% unless forloop.last %},{% endunless %}
     {%- endfor -%}
 ]
 const topic = [
-    {%- for p in site.data.topics[documentdata] -%}
-    {% for t in topics -%}
-    {{ p[t.Topic] | jsonify }}
+    {%- for d in chosendocuments -%}
+    {% for t in chosentopics -%}
+    {{ d[t.Topic] | jsonify }}
     {%- endfor -%}
     {% unless forloop.last %},{% endunless %}
     {%- endfor -%}
