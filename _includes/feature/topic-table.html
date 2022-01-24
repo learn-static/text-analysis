@@ -2,11 +2,13 @@
 
     Embed a table of chosen topics
     
-    E.G. --> {% include feature/topic-table.html topics="nationalism;legislation;peace;war;military;war and economics;international diplomacy;basic needs" %}
+    E.G. --> {% include feature/topic-table.html data="party_platforms_20th_century_all" topics="Cold War;free America;basic rights" %}
 
 {% endcomment %}
 
+{% capture topicdata %}{{ include.data | append: '_topics' }}{% endcapture %}
 {%- assign topics = include.topics | split: ";" -%}
+{%- assign chosentopics = site.data.topics[topicdata] -%}
 
 <table class="table table-striped" style="max-width: 650px;margin-left: auto;margin-right: auto;">
     <thead>
@@ -17,11 +19,11 @@
     </thead>
     <tbody>
     {%- for t in topics -%}
-    {%- assign keys = site.data.keys_1900_2000 | where: "Topic", t -%}
-    {%- for k in keys -%}
+    {%- assign selectedtopics = chosentopics | where: 'TopicName', t -%}
+    {% for s in selectedtopics %}
     <tr>
-       <td class="topic">{{ k.Topic }}</td>
-       <td class="words">{{ k.Words }}</td>
+       <td class="topic">{{ s.TopicName }}</td>
+       <td class="words">{{ s.Words }}</td>
     </tr>
     {%- endfor -%}
     {%- endfor -%}

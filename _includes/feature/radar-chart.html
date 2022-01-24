@@ -20,19 +20,17 @@
         party_platforms_20th_century_democratic
         party_platforms_20th_century_republican
 
-    {% include feature/line-chart.html data="party_platforms_20th_century_all" topic="free America" %}
-
 {% endcomment %}
 
 {% capture topicdata %}{{ include.data | append: '_topics' }}{% endcapture %}
 {% capture documentdata %}{{ include.data | append: '_documents' }}{% endcapture %}
 {% capture varName %}topic_{{ include.topic | slugify | replace: "-","_" }}{% endcapture %}
 
-{% assign topics = include.topics | split: ";" %}
-{% assign docs = include.years | split: ";" %}
-{% assign chosendocuments = site.data.topics[documentdata] %}
-{% assign chosentopics = site.data.topics[topicdata] %}
-{% assign colors = site.data.config-theme-colors | where_exp: 'item', 'item.rgba' %}
+{%- assign topics = include.topics | split: ";" -%}
+{%- assign docs = include.years | split: ";" -%}
+{%- assign chosendocuments = site.data.topics[documentdata] -%}
+{%- assign chosentopics = site.data.topics[topicdata] -%}
+{%- assign colors = site.data.config-theme-colors | where_exp: 'item', 'item.rgba' -%}
 
 <canvas id="radarChart" class="py-5"></canvas>
 
@@ -41,7 +39,7 @@
 const radctx = document.getElementById('radarChart');
 
 let topicData = [
-  {% for d in docs %}{% assign docparts = d | split: ',' %}{%- assign record = chosendocuments | where_exp: 'item', 'item.id contains docparts[0] and item.id contains docparts[1]' -%}
+  {%- for d in docs -%}{%- assign docparts = d | split: ',' -%}{%- assign record = chosendocuments | where_exp: 'item', 'item.id contains docparts[0] and item.id contains docparts[1]' -%}
   [ {{ d | replace: ',', '-' | escape | jsonify }}, {% for r in record %}{{ r.id | replace: "-", " " | jsonify }}{% endfor %}, [{%- for t in topics -%}{%- assign selectedtopics = chosentopics | where: 'TopicName', t -%}{% for s in selectedtopics %}{%- for r in record -%}{{ r[s.Topic] }}{%- endfor -%}{%- endfor -%}{% unless forloop.last %}, {% endunless %}{%- endfor -%}] ]{% unless forloop.last %},{% endunless %}{%- endfor -%}
 ];
 

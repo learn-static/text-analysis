@@ -10,7 +10,7 @@ Proin consequat ultricies ante, volutpat porttitor dui luctus non.
 
 # Topics
 
-{% include feature/topic-table.html topics="nationalism;legislation;peace;war;military;war and economics;international diplomacy;basic needs" %}
+{% include feature/topic-table.html data="party_platforms_20th_century_all" topics="Cold War;free America;basic rights" %}
 
 ---
 
