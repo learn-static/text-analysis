@@ -5,6 +5,7 @@
     E.G. --> {% include feature/radar-chart.html data="party_platforms_20th_century_all" years="1972,McGovern;1972,Nixon" topics="Cold War;free America;basic rights" %}
 
     Limit 6 years
+    Minimum 3 topics
 
     Options for data value:
         sotu_20th_century
@@ -24,7 +25,7 @@
 
 {% capture topicdata %}{{ include.data | append: '_topics' }}{% endcapture %}
 {% capture documentdata %}{{ include.data | append: '_documents' }}{% endcapture %}
-{% capture varName %}topic_{{ include.topic | slugify | replace: "-","_" }}{% endcapture %}
+{% capture varName %}topics_{{ include.topics | slugify | replace: "-","_" }}_ids_{{ include.years | slugify | replace: "-","_" }}{% endcapture %}
 
 {%- assign topics = include.topics | split: ";" -%}
 {%- assign docs = include.years | split: ";" -%}
@@ -32,11 +33,11 @@
 {%- assign chosendocuments = site.data.topics[documentdata] -%}
 {%- assign colors = site.data.config-theme-colors | where_exp: 'item', 'item.rgba' -%}
 
-<canvas id="radarChart" class="py-5"></canvas>
+<canvas id="{{ varName }}" class="py-5"></canvas>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script>
-const radctx = document.getElementById('radarChart');
+let radctx = document.getElementById('{{ varName }}');
 
 let topicData = [
   {%- for d in docs -%}{%- assign docparts = d | split: ',' -%}{%- assign record = chosendocuments | where_exp: 'item', 'item.id contains docparts[0] and item.id contains docparts[1]' -%}
@@ -60,7 +61,7 @@ for (let i = 0; i < topicData.length; i++) itemData.push({
     pointHoverBorderColor: 'rgb(' + colorData[i][2] + ')'
 });
 
-const data = {
+let data = {
   labels: [
     {%- for t in topics -%}
     {{ t | jsonify }}{% unless forloop.last %},{% endunless %}
@@ -69,7 +70,7 @@ const data = {
   datasets: itemData
 };
 
-const radarChart = new Chart(radctx, {
+let radarChart = new Chart(radctx, {
   type: 'radar',
   data: data,
   options: {

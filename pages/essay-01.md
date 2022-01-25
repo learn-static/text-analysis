@@ -10,6 +10,8 @@ Proin consequat ultricies ante, volutpat porttitor dui luctus non.
 
 # Topics
 
+{% include feature/radar-chart.html data="party_platforms_1948_2000_democratic" years="1964,Johnson;1968,Humphrey;1992,Clinton;1996,Clinton;2000,Gore" topics="domestic;social support;national security" %}
+
 {% include feature/topic-table.html data="party_platforms_20th_century_all" topics="Cold War;free America;basic rights" %}
 
 ---
