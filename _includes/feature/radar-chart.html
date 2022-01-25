@@ -37,18 +37,18 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script>
-let radctx = document.getElementById('{{ varName }}');
+var radctx = document.getElementById('{{ varName }}');
 
-let topicData = [
+var topicData = [
   {%- for d in docs -%}{%- assign docparts = d | split: ',' -%}{%- assign record = chosendocuments | where_exp: 'item', 'item.id contains docparts[0] and item.id contains docparts[1]' -%}
   [ {{ d | replace: ',', '-' | escape | jsonify }}, {% for r in record %}{{ r.id | replace: "-", " " | jsonify }}{% endfor %}, [{%- for t in topics -%}{%- assign selectedtopics = chosentopics | where: 'TopicName', t -%}{% for s in selectedtopics %}{%- for r in record -%}{{ r[s.Topic] }}{%- endfor -%}{%- endfor -%}{% unless forloop.last %}, {% endunless %}{%- endfor -%}] ]{% unless forloop.last %},{% endunless %}{%- endfor -%}
 ];
 
-let colorData = [
+var colorData = [
   {% for c in colors %}[ {{ c.color_class | jsonify }}, {{ c.color | jsonify }}, {{ c.rgba |jsonify }}]{% unless forloop.last %},{% endunless %}{%- endfor -%}
 ];
 
-let itemData = []
+var itemData = []
 for (let i = 0; i < topicData.length; i++) itemData.push({
     label: topicData[i][1],
     data: topicData[i][2],
@@ -61,7 +61,7 @@ for (let i = 0; i < topicData.length; i++) itemData.push({
     pointHoverBorderColor: 'rgb(' + colorData[i][2] + ')'
 });
 
-let data = {
+var data = {
   labels: [
     {%- for t in topics -%}
     {{ t | jsonify }}{% unless forloop.last %},{% endunless %}
@@ -70,7 +70,7 @@ let data = {
   datasets: itemData
 };
 
-let radarChart = new Chart(radctx, {
+var radarChart = new Chart(radctx, {
   type: 'radar',
   data: data,
   options: {
