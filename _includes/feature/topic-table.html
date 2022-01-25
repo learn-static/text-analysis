@@ -10,7 +10,10 @@
 {%- assign topics = include.topics | split: ";" -%}
 {%- assign chosentopics = site.data.topics[topicdata] -%}
 
-<p class="text-center"><strong>Topic Table using {{ include.data | replace: '_', ' ' }} data</strong></p>
+<div class="text-center">
+   <h4>Topic Table</h4>
+   <p>{{ include.data | replace: '_', ' ' | replace: 'sotu', 'State of the Union' | remove: ' all' }} </p>
+</div>
 
 <table class="table table-striped" style="max-width: 650px;margin-left: auto;margin-right: auto;">
     <thead>
@@ -31,5 +34,3 @@
     {%- endfor -%}
     </tbody>
 </table>
-
-<p class="text-center"><small>Table Data: {{ include.data | replace: '_', ' ' }}</small></p>

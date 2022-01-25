@@ -33,9 +33,14 @@
 {%- assign chosendocuments = site.data.topics[documentdata] -%}
 {%- assign colors = site.data.config-theme-colors | where_exp: 'item', 'item.rgba' -%}
 
-<h4 class="text-center"><strong>Radar Chart using {{ include.data | replace: '_', ' ' }} data</strong></h4>
+<div class="text-center">
+  <h4>Radar Chart</h4>
+  <p>{{ include.data | replace: '_', ' ' | replace: 'sotu', 'State of the Union' | remove: ' all' }} </p>
+</div>
 
+<div class="chart-container">
 <canvas id="{{ varName }}" class="py-5"></canvas>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script>

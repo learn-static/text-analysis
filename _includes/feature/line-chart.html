@@ -27,13 +27,18 @@
 {%- assign chosentopics = site.data.topics[topicdata] | where: 'TopicName', include.topic -%}
 {%- assign chosendocuments = site.data.topics[documentdata] -%}
 
-<h4 class="text-center"><strong>Line Chart using {{ include.data | replace: '_', ' ' }} data</strong></h4>
+<div class="text-center">
+    <h4>Line Chart</h4>
+    <p>{{ include.data | replace: '_', ' ' | replace: 'sotu', 'State of the Union' | remove: ' all' }} </p>
+</div>
 
 {%- for t in chosentopics -%}
 <p class="text-center"><strong>{{ t.TopicName | capitalize }}:</strong> {{ t.Words }}</p>
 {%- endfor -%}
 
+<div class="chart-container">
 <canvas id="{{ varName }}" class="py-5"></canvas>
+</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script>
