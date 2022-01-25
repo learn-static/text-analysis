@@ -22,26 +22,28 @@
 
 {% capture topicdata %}{{ include.data | append: '_topics' }}{% endcapture %}
 {% capture documentdata %}{{ include.data | append: '_documents' }}{% endcapture %}
-{% capture varName %}topic_{{ include.topic | slugify | replace: "-","_" }}{% endcapture %}
+{% capture varName %}topic_{{ include.topic | slugify | replace: "-", "_" }}_data_{{ include.data | slugify | replace: "-", "_" }}{% endcapture %}
 
 {%- assign chosentopics = site.data.topics[topicdata] | where: 'TopicName', include.topic -%}
 {%- assign chosendocuments = site.data.topics[documentdata] -%}
+
+<h4 class="text-center"><strong>Line Chart using {{ include.data | replace: '_', ' ' }} data</strong></h4>
 
 {%- for t in chosentopics -%}
 <p class="text-center"><strong>{{ t.TopicName | capitalize }}:</strong> {{ t.Words }}</p>
 {%- endfor -%}
 
-<canvas id="myChart" class="py-5"></canvas>
+<canvas id="{{ varName }}" class="py-5"></canvas>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.min.js"></script>
 <script>
-const ctx = document.getElementById('myChart');
-const presidents = [
+var ctx = document.getElementById('{{ varName }}');
+var presidents = [
     {%- for d in chosendocuments -%}
     {{ d.id | replace: "-", " " | jsonify }} {% unless forloop.last %},{% endunless %}
     {%- endfor -%}
 ]
-const topic = [
+var topic = [
     {%- for d in chosendocuments -%}
     {% for t in chosentopics -%}
     {{ d[t.Topic] | jsonify }}
@@ -49,7 +51,7 @@ const topic = [
     {% unless forloop.last %},{% endunless %}
     {%- endfor -%}
 ]
-const myChart = new Chart(ctx, {
+var myChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: presidents,
