@@ -8,17 +8,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 Curabitur maximus nisl magna, at blandit quam interdum sit amet. 
 Proin consequat ultricies ante, volutpat porttitor dui luctus non.
 
-# Topics
-
-{% include feature/radar-chart.html data="party_platforms_20th_century_all" years="1964;1972" topics="Cold War;free America;basic rights" %}
+{% include feature/radar-chart.html data="party_platforms_20th_century_all" years="1964;1972" topics="governing;freedom and prosperity;security and defense" %}
 
 {% include feature/radar-chart.html data="sotu_20th_century" years="1905;1945;1969;1990" topics="America at war;America as world power;labor in America;American economy" %}
 
-{% include feature/topic-table.html data="party_platforms_20th_century_all" topics="Cold War;free America;basic rights" %}
+{% include feature/topic-table.html data="party_platforms_20th_century_all" topics="families;governing;security and defense;freedom and prosperity" %}
 
 ---
-
-# Party Platforms
 
 {% include feature/line-chart.html data="sotu_20th_century" topic="America at war" %}
 
