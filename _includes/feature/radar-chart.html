@@ -30,7 +30,7 @@
 {%- assign topics = include.topics | split: ";" -%}
 {%- assign docs = include.years | split: ";" -%}
 {%- assign chosentopics = site.data.topics[topicdata] -%}
-{%- assign chosendocuments = site.data.topics[documentdata] -%}
+{%- assign chosendocuments = site.data.documents[documentdata] -%}
 {%- assign colors = site.data.config-theme-colors | where_exp: 'item', 'item.rgba' -%}
 
 <div class="text-center">

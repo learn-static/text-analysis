@@ -25,7 +25,7 @@
 {% capture varName %}topic_{{ include.topic | slugify | replace: "-", "_" }}_data_{{ include.data | slugify | replace: "-", "_" }}{% endcapture %}
 
 {%- assign chosentopics = site.data.topics[topicdata] | where: 'TopicName', include.topic -%}
-{%- assign chosendocuments = site.data.topics[documentdata] -%}
+{%- assign chosendocuments = site.data.documents[documentdata] -%}
 
 <div class="text-center">
     <h4>Line Chart</h4>
