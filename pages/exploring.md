@@ -13,6 +13,12 @@ permalink: /exploring.html
 <div id="output"></div>
 
 <script>
+var allTopics = {
+    {%- for t in site.data.topic-data -%}{% capture topicfile %}{{ t.filename-topics }}{% endcapture %}
+    {{ t.name | jsonify }} : { {% for item in site.data.topics[topicfile] %}{% if item.TopicName %} "topicname": {{ item.TopicName | escape | jsonify }} {% endif %}{% endfor %}}{% unless forloop.last %},{% endunless %}
+    {%- endfor -%}
+};
+
 function generateInclude() {
     var include_type = document.getElementById('type').value;
     var include_data = document.getElementById('data').value;
