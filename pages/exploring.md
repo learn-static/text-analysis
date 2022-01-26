@@ -4,11 +4,11 @@ layout: about
 permalink: /exploring.html
 ---
 
-Data: <input id="data">
-Chart type: <input id="type">
-Topic: <input id="topic">
+<p>Data: <input id="data"></p>
+<p>Chart type: <input id="type"></p>
+<p>Topic: <input id="topic"></p>
 
-<button type="button" id="generate">Generate Include</button>
+<button type="button" class="btn btn-primary" id="generate">Generate Include</button>
 
 <div id="output"></div>
 
