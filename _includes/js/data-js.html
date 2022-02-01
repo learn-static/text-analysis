@@ -22,7 +22,33 @@
     };
     
     function logValue() {
-        alert(this.value);
+        var chosenValue = this.value;
+
+        function getTopics(file) {
+            for (let i = 0; i < file.length; i++) {
+                if(chosenValue == file[i].filename) {
+                    var chosenTopics = file[i].topics;
+                    console.log(chosenTopics.length);
+                    break;
+                }
+            };
+
+            var topicDropdown = "Topics: <select id='topicdrop'><option value='' selected='selected'>Select a topic</option></select>"
+
+            document.getElementById("topics").innerHTML = topicDropdown;
+
+            for (let i = 0; i < chosenTopics.length; i++) {
+                function createDropTopics(topics) {
+                    var option = document.createElement("option");
+                    option.setAttribute("value", topics[i]);
+                    option.textContent = topics[i];
+                    return option;
+                };
+                var topics_id = document.getElementById("topicdrop");
+                topics_id.appendChild(createDropTopics(chosenTopics));
+            };
+        };
+        getTopics(allTopics);
     };
 
     var sel = document.getElementById("filename");

@@ -21,11 +21,9 @@ custom-foot: js/data-js.html
     </select>
 </p>
 <p>
-    Topics: <select id="topics">
-        <option value="" selected="selected">Select a topic</option>
-    </select>
-    <input type="submit" id="filename-submit" value="Submit">
+    <div id="topics"></div>
 </p>
+
 
 
 <!--
