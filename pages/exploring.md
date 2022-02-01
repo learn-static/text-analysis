@@ -6,7 +6,7 @@ custom-foot: js/data-js.html
 ---
 
 <p>
-    Include type: <select id="includetype">
+    Include type: <select id="include-type">
         <option value="" selected="selected">Select include type</option>
         <option value="line-chart" id="line-chart">Line Chart</option>
         <option value="topic-table" id="topic-table">Topic Table</option>
@@ -14,14 +14,10 @@ custom-foot: js/data-js.html
         <option value="pdf" id="pdf">PDF</option>
     </select>
 </p>
-<p>
-    Data: <select id="filename">
-        <option value="" selected="selected">Select data file</option>
-    </select>
-</p>
-<p>
-    <div id="topics"></div>
-</p>
+
+<div id="files"></div>
+
+<div id="topics"></div>
 
 <div id="include-output">
 
