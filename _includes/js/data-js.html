@@ -1,0 +1,42 @@
+<script>
+    var allTopics = [
+        {%- for t in site.data.topic-data -%}
+        {% capture filename %}{{ t.filename-topics }}{% endcapture %}
+        {%- assign topicdata = site.data.topics[filename] | where_exp: "item", "item.TopicName" -%}
+        {% capture topicnames %}[{% for f in topicdata %}{{ f.TopicName | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}]{% endcapture %}
+        {% capture filename-topics %}{% for f in topicdata %}{% if forloop.first %}{{ filename }}:{{ topicnames }}*{% endif %}{% endfor %}{% endcapture %}
+        {%- assign finaltopics = filename-topics | split: "*" -%}
+        {%- for a in finaltopics -%}{ "filename":{{ a | split: ":" | first | jsonify }}, "topics":{{ a | split: ":" | last }} },{%- endfor -%}{% endfor %}
+    ];
+    
+    for (let i = 0; i < allTopics.length; i++) {
+        function createDropItem(name) {
+            var option = document.createElement("option");
+            option.setAttribute("id", name);
+            option.setAttribute("value", name);
+            option.textContent = name;
+            return option;
+        };
+        var filename_id = document.getElementById("filename");
+        filename_id.appendChild(createDropItem(allTopics[i].filename));
+    };
+    
+    var sel = document.getElementById("filename");
+    document.getElementById("filename-submit").onclick = function() {
+        
+    }
+    
+    /*
+    function generateInclude() {
+        var include_type = document.getElementById('type').value;
+        var include_data = document.getElementById('data').value;
+        var include_topic = document.getElementById('topic').value;
+    
+        var include = '{% raw %}{% include feature/' + include_type + '.html data="' + include_data + '" topic="' + include_topic + '" %}{% endraw %}';
+    
+        document.getElementById('output').innerHTML = include;
+    };
+    
+    document.getElementById('generate').addEventListener('click', generateInclude);
+    */
+</script>
