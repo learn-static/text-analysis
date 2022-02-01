@@ -21,10 +21,12 @@
         filename_id.appendChild(createDropItem(allTopics[i].filename));
     };
     
+    function logValue() {
+        alert(this.value);
+    };
+
     var sel = document.getElementById("filename");
-    document.getElementById("filename-submit").onclick = function() {
-        
-    }
+    sel.addEventListener('change', logValue);
     
     /*
     function generateInclude() {
