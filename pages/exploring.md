@@ -13,7 +13,6 @@ custom-foot: js/data-js.html
         <option value="image" id="image">Image</option>
         <option value="pdf" id="pdf">PDF</option>
     </select>
-    <input type="submit" value="Submit">
 </p>
 <p>
     Data: <select id="filename">
@@ -24,6 +23,7 @@ custom-foot: js/data-js.html
     <div id="topics"></div>
 </p>
 
+<div id="include-output">
 
 
 <!--
