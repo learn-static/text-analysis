@@ -40,7 +40,7 @@ function getType() {
             filename_id.appendChild(createDropItem(allTopics[i].filename));
         };
         
-        function logValue() {
+        function getTopics() {
             var chosenFile = this.value;
 
             function getTopics(file) {
@@ -71,18 +71,18 @@ function getType() {
 
             getTopics(allTopics);
 
-            function outputValue() {
+            function topicInclude() {
                 var chosenTopic = this.value;
                 var include = '{% raw %}{% include feature/line-chart.html data="' + chosenFile + '" topic="' + chosenTopic + '" %}{% endraw %}';
                 document.getElementById('include-output').innerHTML = include;
             };
 
             var topic_sel = document.getElementById("topicdrop");
-            topic_sel.addEventListener('change', outputValue);
+            topic_sel.addEventListener('change', topicInclude);
         };
 
         var filename_sel = document.getElementById("filename");
-        filename_sel.addEventListener('change', logValue);
+        filename_sel.addEventListener('change', getTopics);
 
     } else if(chosenType == 'image-upload') {
         var imageDropdown = "<p>Image filename: <select id='image-upload'><option value='' selected='selected'>Select an image file</option></select></p>"
@@ -101,14 +101,14 @@ function getType() {
             
             image_id.appendChild(createDropItem(allImages));
         };
-        function outputImage() {
+        function imageInclude() {
                 var chosenImage = this.value;
                 var include = '{% raw %}{% include feature/image.html filename="' + chosenImage + '" %}{% endraw %}';
                 document.getElementById('include-output').innerHTML = include;
             };
 
             var image_sel = document.getElementById("image-upload");
-            image_sel.addEventListener('change', outputImage);
+            image_sel.addEventListener('change', imageInclude);
 
     } else if(chosenType == 'image-external') {
 
@@ -143,14 +143,14 @@ function getType() {
             
             doc_id.appendChild(createDropItem(allDocs));
         };
-        function outputDoc() {
+        function docInclude() {
                 var chosenDoc = this.value;
                 var include = '{% raw %}{% include feature/image.html filename="' + chosenDoc + '" %}{% endraw %}';
                 document.getElementById('include-output').innerHTML = include;
             };
 
             var doc_sel = document.getElementById("pdf-upload");
-            doc_sel.addEventListener('change', outputDoc);
+            doc_sel.addEventListener('change', docInclude);
 
     }
 };
