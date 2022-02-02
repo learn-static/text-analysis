@@ -8,14 +8,21 @@ var allTopics = [
     {%- assign finaltopics = filename-topics | split: "*" -%}
     {%- for a in finaltopics -%}{ "filename":{{ a | split: ":" | first | jsonify }}, "topics":{{ a | split: ":" | last }} },{%- endfor -%}{% endfor %}
 ];
-    
+
+var allImages = [
+    {% assign files = site.static_files | where_exp: 'f','f.path contains "objects/"' | map: 'name' %}{% for f in files %}{% if f contains '.jpg' or f contains '.png' %}{{ f | jsonify }}{% unless forloop.last %}, {% endunless %}{% endif %}{% endfor %}
+];
+
+var allDocs = [
+    {% assign files = site.static_files | where_exp: 'f','f.path contains "objects/"' | map: 'name' %}{% for f in files %}{% if f contains '.pdf' %}{{ f | jsonify }}{% unless forloop.last %}, {% endunless %}{% endif %}{% endfor %}
+];
+
 function getType() {
     var chosenType = this.value;
 
     if(chosenType == 'line-chart') {
 
         var fileDropdown = "<p>Data: <select id='filename'><option value='' selected='selected'>Select a file</option></select></p>"
-        console.log(fileDropdown);
 
         document.getElementById("files").innerHTML = fileDropdown;
 
@@ -66,7 +73,6 @@ function getType() {
 
             function outputValue() {
                 var chosenTopic = this.value;
-                console.log(chosenTopic);
                 var include = '{% raw %}{% include feature/line-chart.html data="' + chosenFile + '" topic="' + chosenTopic + '" %}{% endraw %}';
                 document.getElementById('include-output').innerHTML = include;
             };
@@ -77,6 +83,75 @@ function getType() {
 
         var filename_sel = document.getElementById("filename");
         filename_sel.addEventListener('change', logValue);
+
+    } else if(chosenType == 'image-upload') {
+        var imageDropdown = "<p>Image filename: <select id='image-upload'><option value='' selected='selected'>Select an image file</option></select></p>"
+
+        document.getElementById("files").innerHTML = imageDropdown;
+
+        for (let i = 0; i < allImages.length; i++) {
+            function createDropItem(images) {
+                var option = document.createElement("option");
+                option.setAttribute("value", images[i]);
+                option.textContent = images[i];
+                return option;
+            };
+
+            var image_id = document.getElementById("image-upload");
+            
+            image_id.appendChild(createDropItem(allImages));
+        };
+        function outputImage() {
+                var chosenImage = this.value;
+                var include = '{% raw %}{% include feature/image.html filename="' + chosenImage + '" %}{% endraw %}';
+                document.getElementById('include-output').innerHTML = include;
+            };
+
+            var image_sel = document.getElementById("image-upload");
+            image_sel.addEventListener('change', outputImage);
+
+    } else if(chosenType == 'image-external') {
+
+        document.getElementById("files").innerHTML = "<p>Image filename: <input id='image-file'></p>";
+
+        document.getElementById("button").innerHTML = "<button type='button' class='btn btn-primary' id='generate'>Generate Include</button>";
+
+        function generateInclude() {
+            var image = document.getElementById('image-file').value;
+
+            var include = '{% raw %}{% include feature/image.html filename="' + image + '" %}{% endraw %}';
+    
+            document.getElementById('include-output').innerHTML = include;
+        };
+
+        document.getElementById('generate').addEventListener('click', generateInclude);
+
+    } else if(chosenType == 'pdf') {
+        var pdfDropdown = "<p>Document filename: <select id='pdf-upload'><option value='' selected='selected'>Select a document file</option></select></p>"
+
+        document.getElementById("files").innerHTML = pdfDropdown;
+
+        for (let i = 0; i < allDocs.length; i++) {
+            function createDropItem(docs) {
+                var option = document.createElement("option");
+                option.setAttribute("value", docs[i]);
+                option.textContent = docs[i];
+                return option;
+            };
+
+            var doc_id = document.getElementById("pdf-upload");
+            
+            doc_id.appendChild(createDropItem(allDocs));
+        };
+        function outputDoc() {
+                var chosenDoc = this.value;
+                var include = '{% raw %}{% include feature/image.html filename="' + chosenDoc + '" %}{% endraw %}';
+                document.getElementById('include-output').innerHTML = include;
+            };
+
+            var doc_sel = document.getElementById("pdf-upload");
+            doc_sel.addEventListener('change', outputDoc);
+
     }
 };
 
