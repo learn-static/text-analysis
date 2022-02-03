@@ -12,7 +12,15 @@ permalink: /exploring.html
 {% capture filename %}{{ filename | remove: '_topics' }}{% endcapture %}
 {% capture topic %}{{ t }}{% endcapture %}
 {% include feature/line-chart.html data=filename topic=topic %}
+
+**Include this chart**:
+
+```
+{% raw %}{% include feature/line-chart.html data="{% endraw %}{{ filename | remove: '_topics' }}{% raw %}" topic="{% endraw %}{{ t }}{% raw %}" %}{% endraw %}
+```
+
 ---
+
 {% endunless %}
 {% endfor %}
 {% endfor -%}
