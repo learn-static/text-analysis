@@ -4,6 +4,12 @@ title: Home
 ---
 
 {% comment %}
+{% for files in site.data.topics %}
+{{ files[0] }}
+{% endfor %}
+{% endcomment %}
+
+{% comment %}
 {% for file in site.data.topics %}
 {% assign filename = file[0] %}
 {% assign topics = site.data.topics[filename] | map: 'TopicName' %}
