@@ -25,6 +25,20 @@
                 </li>
                 {% endif %}
                 {%- endfor -%}
+                <li class="nav-item dropdown">
+                    <a class="nav-link  dropdown-toggle{% if childStubs contains page.url %} active{% endif %}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Topic Visualizations</a>
+                    <div class="dropdown-menu">
+                        {% for file in site.data.topics %}
+                        {% assign filename = file[0] %}
+                        {% assign topics = site.data.topics[filename] | map: 'TopicName' %}
+                        {% for t in topics limit:2 %}
+                        {% unless t == nil %}
+                        <a class="dropdown-item {% if page.url == filename %}active{% endif %}" href="{{ filename | prepend: 'topics/' | append: '.html' | relative_url }}">{{ filename | replace: '_', ' ' | replace: 'sotu', 'State of the Union' | replace: 'party platforms', 'Party Platforms' | remove: ' all' }}</a>
+                        {% endunless %}
+                        {% endfor %}
+                        {% endfor -%}
+                    </div>
+                </li>
             </ul>
             
             {% include nav-search-lunr.html %}
