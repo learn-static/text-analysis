@@ -36,6 +36,20 @@ author: owikle
 # Use the filename of your CSV **without** the ".csv" extension! E.g. _data/demo-metadata.csv --> "demo-metadata"
 metadata: demo-metadata 
 
+# collection
+collections:
+  topics:
+    output: true
+    permalink: /:collection/:title
+  
+# set defaults
+defaults:
+  - scope:
+      path: ""
+      type: "topics"
+    values:
+      layout: "topic"
+
 ##########
 # GOOGLE SERVICES [optional!]
 #
