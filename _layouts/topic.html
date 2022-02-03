@@ -2,8 +2,11 @@
 layout: about
 ---
 
+<h1 class="pb-4">Topics: {{ page.title }}</h1>
+
 {% for file in site.data.topics %}
 {% assign filename = file[0] %}
+{% if page.url contains filename %}
 {% assign topics = site.data.topics[filename] | map: 'TopicName' %}
 {% for t in topics %}
 {% unless t == nil %}
@@ -11,12 +14,17 @@ layout: about
 {% capture topic %}{{ t }}{% endcapture %}
 {% include feature/line-chart.html data=filename topic=topic %}
 
+<div class="text-center pb-4">
 <strong>Include</strong>:
 
 <code>{% raw %}{% include feature/line-chart.html data="{% endraw %}{{ filename | remove: '_topics' }}{% raw %}" topic="{% endraw %}{{ t }}{% raw %}" %}{% endraw %}</code>
+</div>
 
+{% unless forloop.last %}
 <hr>
+{% endunless %}
 
 {% endunless %}
 {% endfor %}
+{% endif %}
 {% endfor -%}
