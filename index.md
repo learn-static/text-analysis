@@ -3,6 +3,19 @@ layout: home-infographic
 title: Home
 ---
 
+{% comment %}
+{% for file in site.data.topics %}
+{% assign filename = file[0] %}
+{% assign topics = site.data.topics[filename] | map: 'TopicName' %}
+{% for t in topics limit:2 %}
+{% unless t == nil %}
+{{ filename | replace: '_', ' ' | replace: 'sotu', 'State of the Union' | replace: 'party platforms', 'Party Platforms' | remove: ' all' }}
+{% endunless %}
+{% endfor %}
+{% endfor -%}
+{% endcomment %}
+
+{% comment %}
 {% for file in site.data.topics %}
 {% assign filename = file[0] %}
 {% assign foo = site.data.topics[filename] | map: 'TopicName' %}
@@ -12,6 +25,7 @@ title: Home
 {% endif %}
 {% endfor %}
 {% endfor -%}
+{% endcomment %}
 
 
 {% comment %}
