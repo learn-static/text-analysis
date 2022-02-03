@@ -1,3 +1,3 @@
 ---
-title: State of the Union Addresses 20th Century
+title: "State of the Union Addresses, 1900-2000"
 ---

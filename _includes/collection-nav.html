@@ -33,7 +33,7 @@
                         {% assign topics = site.data.topics[filename] | map: 'TopicName' %}
                         {% for t in topics limit:2 %}
                         {% unless t == nil %}
-                        <a class="dropdown-item {% if page.url == filename %}active{% endif %}" href="{{ filename | prepend: 'topics/' | append: '.html' | relative_url }}">{{ filename | replace: '_', ' ' | replace: 'sotu', 'State of the Union' | replace: 'party platforms', 'Party Platforms' | remove: ' all' }}</a>
+                        <a class="dropdown-item {% if page.url == filename %}active{% endif %}" href="{{ filename | prepend: 'topics/' | append: '.html' | relative_url }}">{{ filename | replace: '_', ' ' | replace: 'sotu', 'State of the Union' | replace: 'party platforms', 'Party Platforms' | replace: '20th century', '1900-2000' | remove: ' all' }}</a>
                         {% endunless %}
                         {% endfor %}
                         {% endfor -%}

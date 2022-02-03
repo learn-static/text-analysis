@@ -1,3 +1,3 @@
 ---
-title: Party Platforms 20th Century
+title: "Party Platforms, 1900-2000"
 ---
