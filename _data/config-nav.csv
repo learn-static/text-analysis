@@ -1,6 +1,7 @@
 display_name,stub,dropdown_parent
 Home,/
-Data Exploration,exploring.html
+Topic Exploration,exploring.html
+Include Generator,generator.html
 Essay In Progress,/essay-01.html
 Final Essay,/essay-02.html
 Data,/data.html

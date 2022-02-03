@@ -1,0 +1,35 @@
+---
+title: Include Generator
+layout: about
+permalink: /generator.html
+custom-foot: js/data-js.html
+---
+
+<p>
+    Include type: <select id="include-type">
+        <option value="" selected="selected">Select include type</option>
+        <option value="line-chart" id="line-chart">Line Chart</option>
+        <option value="topic-table" id="topic-table">Topic Table</option>
+        <option value="image-upload">Uploaded Image</option>
+        <option value="image-external">External Image</option>
+        <option value="pdf" id="pdf">PDF</option>
+    </select>
+</p>
+
+<div id="files"></div>
+
+<div id="topics"></div>
+
+<div id="include-output">
+
+<div id="button"></div>
+
+
+<!--
+<p>Data: <input id="data"></p>
+<p>Chart type: <input id="type"></p>
+<p>Topic: <input id="topic"></p>
+
+<button type='button' class='btn btn-primary' id='generate'>Generate Include</button>
+
+<div id="output"></div>-->
