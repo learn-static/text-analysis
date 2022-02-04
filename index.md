@@ -15,7 +15,7 @@ title: Home
 {% assign topics = site.data.topics[filename] | map: 'topicname' %}
 {% for t in topics limit:2 %}
 {% unless t == nil %}
-{{ filename | replace: '_', ' ' | replace: 'sotu', 'State of the Union' | replace: 'party platforms', 'Party Platforms' | remove: ' all' }}
+{{ filename | replace: '-', ' ' | replace: 'sotu', 'State of the Union' | replace: 'party platforms', 'Party Platforms' | remove: ' all' }}
 {% endunless %}
 {% endfor %}
 {% endfor -%}

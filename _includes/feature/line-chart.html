@@ -2,7 +2,7 @@
 
     Embed a line chart, https://www.chartjs.org/docs/latest/charts/line.html
     
-    E.G. --> {% include feature/line-chart.html data="party_platforms_20th_century_all" topic="freedom and prosperity" %}
+    E.G. --> {% include feature/line-chart.html data="party-platforms-20th-century-all" topic="freedom and prosperity" %}
 
     Options for data value:
         sotu_20th_century
@@ -20,8 +20,8 @@
 
 {% endcomment %}
 
-{% capture topicdata %}{{ include.data | append: '_topics' }}{% endcapture %}
-{% capture documentdata %}{{ include.data | append: '_documents' }}{% endcapture %}
+{% capture topicdata %}{{ include.data | append: '-topics' }}{% endcapture %}
+{% capture documentdata %}{{ include.data | append: '-documents' }}{% endcapture %}
 {% capture varName %}topic_{{ include.topic | slugify | replace: "-", "_" }}_data_{{ include.data | slugify | replace: "-", "_" }}{% endcapture %}
 
 {%- assign chosentopics = site.data.topics[topicdata] | where: 'topicname', include.topic -%}
@@ -29,7 +29,7 @@
 
 <div class="text-center">
     <h4>Line Chart</h4>
-    <p>{{ include.data | replace: '_', ' ' | replace: 'sotu', 'State of the Union' | remove: ' all' }} </p>
+    <p>{{ include.data | replace: '-', ' ' | replace: 'sotu', 'State of the Union' | remove: ' all' }} </p>
 </div>
 
 {%- for t in chosentopics -%}

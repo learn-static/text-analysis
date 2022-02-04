@@ -23,8 +23,8 @@
 
 {% endcomment %}
 
-{% capture topicdata %}{{ include.data | append: '_topics' }}{% endcapture %}
-{% capture documentdata %}{{ include.data | append: '_documents' }}{% endcapture %}
+{% capture topicdata %}{{ include.data | append: '-topics' }}{% endcapture %}
+{% capture documentdata %}{{ include.data | append: '-documents' }}{% endcapture %}
 {% capture varName %}topics_{{ include.topics | slugify | replace: "-","_" }}_ids_{{ include.years | slugify | replace: "-","_" }}{% endcapture %}
 
 {%- assign topics = include.topics | split: ";" -%}
@@ -35,7 +35,7 @@
 
 <div class="text-center">
   <h4>Radar Chart</h4>
-  <p>{{ include.data | replace: '_', ' ' | replace: 'sotu', 'State of the Union' | remove: ' all' }} </p>
+  <p>{{ include.data | replace: '-', ' ' | replace: 'sotu', 'State of the Union' | remove: ' all' }} </p>
 </div>
 
 <div class="chart-container">
