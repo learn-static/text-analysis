@@ -24,11 +24,9 @@ title: Home
 {% comment %}
 {% for file in site.data.topics %}
 {% assign filename = file[0] %}
-{% assign foo = site.data.topics[filename] | map: 'topicname' %}
-{% for f in foo %}
-{% if f != nil %}
-{{ filename }}: {{ f }}
-{% endif %}
+{% assign topics = site.data.topics[filename] | where_exp: 'item', 'item.topicname != nil' | map: 'topicname' %}
+{% for t in topics limit:1 %}
+{{ filename }}
 {% endfor %}
 {% endfor -%}
 {% endcomment %}
