@@ -6,7 +6,7 @@ permalink: /exploring.html
 
 {% for file in site.data.topics %}
 {% assign filename = file[0] %}
-{% assign topics = site.data.topics[filename] | map: 'TopicName' %}
+{% assign topics = site.data.topics[filename] | map: 'topicname' %}
 {% for t in topics %}
 {% unless t == nil %}
 {% capture filename %}{{ filename | remove: '_topics' }}{% endcapture %}

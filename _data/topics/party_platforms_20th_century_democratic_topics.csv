@@ -1,11 +1,11 @@
-Topic,TokenCount,Words
-0,12162,"program act million power leadership employment year states provided projects"
-1,14505,"democratic party policy u.s international administration economic reagan commitment foreign"
-2,20104,"government federal administration system public people states citizens action policies"
-3,23228,"programs support housing education development health provide full resources assistance"
-4,11957,"democratic party republican pledge favor policy labor congress war great"
-5,20953,"world national economic continue security nation private united nations work"
-6,14699,"tax public rights end people law war justice military means"
-7,9879,"make democrats party work workers schools support gore clinton crime"
-8,16018,"president children years people economy families america's communities care health"
-9,9122,"country people national state law demand favor commerce life laws"
+topic,tokencount,words,topicname
+0,12162,"program act million power leadership employment year states provided projects",
+1,14505,"democratic party policy u.s international administration economic reagan commitment foreign",
+2,20104,"government federal administration system public people states citizens action policies",
+3,23228,"programs support housing education development health provide full resources assistance",
+4,11957,"democratic party republican pledge favor policy labor congress war great",
+5,20953,"world national economic continue security nation private united nations work",
+6,14699,"tax public rights end people law war justice military means",
+7,9879,"make democrats party work workers schools support gore clinton crime",
+8,16018,"president children years people economy families america's communities care health",
+9,9122,"country people national state law demand favor commerce life laws",

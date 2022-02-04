@@ -7,7 +7,7 @@ layout: about
 {% for file in site.data.topics %}
 {% assign filename = file[0] %}
 {% if page.url contains filename %}
-{% assign topics = site.data.topics[filename] | map: 'TopicName' %}
+{% assign topics = site.data.topics[filename] | map: 'topicname' %}
 {% for t in topics %}
 {% unless t == nil %}
 {% capture filename %}{{ filename | remove: '_topics' }}{% endcapture %}

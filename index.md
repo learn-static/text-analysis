@@ -12,7 +12,7 @@ title: Home
 {% comment %}
 {% for file in site.data.topics %}
 {% assign filename = file[0] %}
-{% assign topics = site.data.topics[filename] | map: 'TopicName' %}
+{% assign topics = site.data.topics[filename] | map: 'topicname' %}
 {% for t in topics limit:2 %}
 {% unless t == nil %}
 {{ filename | replace: '_', ' ' | replace: 'sotu', 'State of the Union' | replace: 'party platforms', 'Party Platforms' | remove: ' all' }}
@@ -24,7 +24,7 @@ title: Home
 {% comment %}
 {% for file in site.data.topics %}
 {% assign filename = file[0] %}
-{% assign foo = site.data.topics[filename] | map: 'TopicName' %}
+{% assign foo = site.data.topics[filename] | map: 'topicname' %}
 {% for f in foo %}
 {% if f != nil %}
 {{ filename }}: {{ f }}
@@ -46,7 +46,7 @@ title: Home
 {% for files in site.data.topics %}
 {% assign filecontent = files[1] %}
 {% for f in filecontent %}
-{% if f.TopicName %}
+{% if f.topicname %}
 {{ files[0] }}
 {% endif %}
 {% endfor -%}
@@ -57,7 +57,7 @@ title: Home
 {% for files in site.data.topics %}
 {% assign filecontent = files[1] %}
 {% for f in filecontent %}
-{{ f.TopicName }}
+{{ f.topicname }}
 {% endfor %}
 {% endfor -%}
 {% endcomment %}

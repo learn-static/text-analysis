@@ -24,11 +24,11 @@
     </thead>
     <tbody>
     {%- for t in topics -%}
-    {%- assign selectedtopics = chosentopics | where: 'TopicName', t -%}
+    {%- assign selectedtopics = chosentopics | where: 'topicname', t -%}
     {% for s in selectedtopics %}
     <tr>
-       <td class="topic">{{ s.TopicName }}</td>
-       <td class="words">{{ s.Words }}</td>
+       <td class="topic">{{ s.topicname }}</td>
+       <td class="words">{{ s.words }}</td>
     </tr>
     {%- endfor -%}
     {%- endfor -%}

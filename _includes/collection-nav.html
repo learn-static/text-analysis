@@ -30,7 +30,7 @@
                     <div class="dropdown-menu">
                         {% for file in site.data.topics %}
                         {% assign filename = file[0] %}
-                        {% assign topics = site.data.topics[filename] | map: 'TopicName' %}
+                        {% assign topics = site.data.topics[filename] | map: 'topicname' %}
                         {% for t in topics limit:2 %}
                         {% unless t == nil %}
                         <a class="dropdown-item {% if page.url == filename %}active{% endif %}" href="{{ filename | prepend: 'topics/' | append: '.html' | relative_url }}">{{ filename | replace: '_', ' ' | replace: 'sotu', 'State of the Union' | replace: 'party platforms', 'Party Platforms' | replace: '20th century', '1900-2000' | remove: ' all' }}</a>

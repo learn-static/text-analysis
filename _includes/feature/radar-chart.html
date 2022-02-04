@@ -48,7 +48,7 @@ var radctx = document.getElementById('{{ varName }}');
 
 var topicData = [
   {%- for d in docs -%}{% assign record = chosendocuments | where_exp: 'item', 'item.id contains d' %}{% for r in record %}
-  [{{ r.id | slugify | jsonify }}, {{ r.id | replace: "-", " " | jsonify }}, [{% for t in topics %}{% assign selectedtopics = chosentopics | where: 'TopicName', t %}{% for s in selectedtopics %}{{ r[s.Topic] }}{%- endfor -%}{% unless forloop.last %}, {% endunless %}{%- endfor -%}] ]{% unless forloop.last %}, {% endunless %}{%- endfor -%}{% unless forloop.last %}, {% endunless %}{% endfor %}
+  [{{ r.id | slugify | jsonify }}, {{ r.id | replace: "-", " " | jsonify }}, [{% for t in topics %}{% assign selectedtopics = chosentopics | where: 'topicname', t %}{% for s in selectedtopics %}{{ r[s.topic] }}{%- endfor -%}{% unless forloop.last %}, {% endunless %}{%- endfor -%}] ]{% unless forloop.last %}, {% endunless %}{%- endfor -%}{% unless forloop.last %}, {% endunless %}{% endfor %}
 ];
 
 var colorData = [
