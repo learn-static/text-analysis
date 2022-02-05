@@ -7,10 +7,14 @@ layout: about
 {% for file in site.data.topics %}
 {% assign filename = file[0] %}
 {% if page.url contains filename %}
-{% assign topics = site.data.topics[filename] | map: 'topicname' %}
-{% for t in topics %}
-{% unless t == nil %}
+{% assign topics = site.data.topics[filename] | where_exp: 'item', 'item.topicname != nil' | map: 'topicname' %}
+{% assign tabletopics = topics | join: ';' %}
 {% capture filename %}{{ filename | remove: '-topics' }}{% endcapture %}
+{% capture tabletopics %}{{ tabletopics }}{% endcapture %}
+
+{% include feature/topic-table.html data=filename topics=tabletopics %}
+
+{% for t in topics %}
 {% capture topic %}{{ t }}{% endcapture %}
 {% include feature/line-chart.html data=filename topic=topic %}
 
@@ -24,7 +28,6 @@ layout: about
 <hr>
 {% endunless %}
 
-{% endunless %}
 {% endfor %}
 {% endif %}
 {% endfor -%}
