@@ -85,30 +85,55 @@ function getType() {
         filename_sel.addEventListener('change', getTopics);
 
     } else if(chosenType == 'image-upload') {
-        var imageDropdown = "<div class='form-group'><label for='image-upload'>Image filename:</label><select class='custom-select' id='image-upload' aria-describedby='chooseImage'><option selected='selected'>Select an image file</option></select><small id='chooseImage' class='form-text text-muted'>Choose the image that you uploaded.</small></div><div class='form-group'><label for='altText'>Alt text:</label><input class='form-control' id='altText' placeholder='Describe your image'></div>"
+        // set up image dropdown
+        var imageForm = '<div class="form-group"><label for="image-upload">Image filename:</label><select class="custom-select" id="image-upload" aria-describedby="chooseImage" value="esc"><option>Select an image file</option></select><small id="chooseImage" class="form-text text-muted">Choose an image.</small></div>'
+        
+        // add alt text entry
+        imageForm += '<div class="form-group"><label for="altText">Alt text:</label><input class="form-control" id="altText" placeholder="Describe your image"></div>'
 
-        document.getElementById("files").innerHTML = imageDropdown;
+        // add submit button
+        imageForm += '<button type="submit" id="generate" class="btn btn-primary">Submit</button>'
 
+        // add image form to page
+        document.getElementById('files').innerHTML = imageForm;
+
+        // create image dropdown
         for (let i = 0; i < allImages.length; i++) {
             function createDropItem(images) {
-                var option = document.createElement("option");
-                option.setAttribute("value", images[i]);
+                var option = document.createElement('option');
+                option.setAttribute('value', images[i]);
                 option.textContent = images[i];
                 return option;
             };
 
-            var image_id = document.getElementById("image-upload");
-            
+            // add items to image dropdown
+            var image_id = document.getElementById('image-upload');
             image_id.appendChild(createDropItem(allImages));
         };
+
+        var menu = document.getElementById('image-upload');
+        var btn = document.getElementById('generate');
+        btn.addEventListener('click', function(){
+            console.log(menu.value);
+            return menu.value
+        })
+        // form entry
+        /*
         function imageInclude() {
-                var chosenImage = this.value;
-                var include = '<code>{% raw %}{% include feature/image.html filename="' + chosenImage + '" %}{% endraw %}</code>';
+            var chosenImage = this.value;
+        };
+
+        var altText = document.getElementById('altText').value;
+            function generateInclude() {
+                var include = '<code>{% raw %}{% include feature/image.html filename="' + chosenImage + '" alt="' + altText + '" %}{% endraw %}</code>';
+            
                 document.getElementById('include-output').innerHTML = include;
             };
+        document.getElementById('generate').addEventListener('click', generateInclude);
 
-            var image_sel = document.getElementById("image-upload");
-            image_sel.addEventListener('change', imageInclude);
+        var image_sel = document.getElementById("image-upload");
+        image_sel.addEventListener('change', imageInclude);
+*/
 
     } else if(chosenType == 'image-external') {
 
