@@ -5,18 +5,22 @@ permalink: /generator.html
 custom-foot: js/data-js.html
 ---
 
-<p>
-    Include type: <select id="include-type">
-        <option value="" selected="selected">Select include type</option>
-        <option value="line-chart" id="line-chart">Line Chart</option>
-        <option value="topic-table" id="topic-table">Topic Table</option>
+<form>
+  <div class="form-group">
+    <select class="custom-select" id="include-type">
+        <option selected>Select include type</option>
         <option value="image-upload">Uploaded Image</option>
         <option value="image-external">External Image</option>
-        <option value="pdf" id="pdf">PDF</option>
+        <option value="pdf">PDF</option>
     </select>
-</p>
+  </div>
 
-<div id="files"></div>
+  <div id="files"></div>
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
 
 <div id="topics"></div>
 

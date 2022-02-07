@@ -85,7 +85,7 @@ function getType() {
         filename_sel.addEventListener('change', getTopics);
 
     } else if(chosenType == 'image-upload') {
-        var imageDropdown = "<p>Image filename: <select id='image-upload'><option value='' selected='selected'>Select an image file</option></select></p>"
+        var imageDropdown = "<div class='form-group'><label for='image-upload'>Image filename:</label><select class='custom-select' id='image-upload' aria-describedby='chooseImage'><option selected='selected'>Select an image file</option></select><small id='chooseImage' class='form-text text-muted'>Choose the image that you uploaded.</small></div><div class='form-group'><label for='altText'>Alt text:</label><input class='form-control' id='altText' placeholder='Describe your image'></div>"
 
         document.getElementById("files").innerHTML = imageDropdown;
 
@@ -103,7 +103,7 @@ function getType() {
         };
         function imageInclude() {
                 var chosenImage = this.value;
-                var include = '{% raw %}{% include feature/image.html filename="' + chosenImage + '" %}{% endraw %}';
+                var include = '<code>{% raw %}{% include feature/image.html filename="' + chosenImage + '" %}{% endraw %}</code>';
                 document.getElementById('include-output').innerHTML = include;
             };
 
