@@ -12,17 +12,14 @@
             // add caption entry
             imageForm += '<div class="form-group"><label for="imageCaption">Image caption:</label><input class="form-control" id="imageCaption" placeholder="Describe image"></div>'
 
-            // add alt text entry
-            imageForm += '<div class="form-group"><label for="altText">Image alt text:</label><input class="form-control" id="altText" placeholder="Describe image"><small id="altText" class="form-text text-muted">Alt text provides screen reader users with a description of the image.</small></div>'
+            // add image width
+            imageForm += '<div class="form-group"><label for="imageWidth">Image width:</label><select class="custom-select" id="image-width" aria-describedby="imageWidth"><option>Select an image width</option><option value="25">25%</option><option value="50">50%</option><option value="75">75%</option><option value="100">100%</option></select></div>'
 
             // add image link (optional)
             imageForm += '<div class="form-group"><label for="imageLink">Image link (optional):</label><input class="form-control" id="imageLink" placeholder="Add a link to where you found your image"></div>'
 
-            // add image width (optional)
-            imageForm += '<div class="form-group"><label for="imageWidth">Image width (optional):</label><select class="custom-select" id="image-width" aria-describedby="imageWidth"><option>Select an image width</option><option value="25">25%</option><option value="50">50%</option><option value="75">75%</option><option value="100">100%</option></select></div>'
-
             // add submit button
-            imageForm += '<button id="generate" class="btn btn-primary">Submit</button>'
+            imageForm += '<button type="submit" id="generate" class="btn btn-primary mr-3">Submit</button><button id="reload" class="btn btn-success">Refresh</button>'
 
             // add image form to page
             document.getElementById('form-content').innerHTML = imageForm;
@@ -41,17 +38,49 @@
                 image_id.appendChild(createDropItem(allImages));
             };
 
-            // define image element
+            // define image and width elements
             var image = document.getElementById('image-upload');
+            var width = document.getElementById('image-width');
+            // define button
             var btn = document.getElementById('generate');
 
             // generate include
             btn.addEventListener('click', function(){
                 var chosenImage = image.value;
-                var altText = document.getElementById('altText').value;
-                var include = '<div class="card"><div class="m-4"><p><strong>Include Code </strong><br><small class="text-muted">Copy and paste all of the code below into your essay page</small><br><code>{% raw %}{% include feature/image.html filename="' + chosenImage + '" alt="' + altText + '" %}{% endraw %}</code></p></div></div>';
-                document.getElementById('include-output').innerHTML = include;
+                var imageCaption = document.getElementById('imageCaption').value;
+                var imageWidth = width.value;
+                var link = document.getElementById('imageLink').value;
+                var filename = 'filename="' + chosenImage + '" ';
+                var caption = 'caption="' + imageCaption + '" ';
+                var alt = 'alt="' + imageCaption + '" ';
+                var widthPercentage = 'width="' + imageWidth + '" ';
+
+                if (chosenImage == 'Select an image file') {
+                    alert('Choose an image filename');
+                } else if (imageCaption == ''){
+                    alert('Image caption must be filled out');
+                } else if (imageWidth == 'Select an image width'){
+                    alert('Select an image width');
+                // without a link
+                } else if (link == '' ){
+                    // setup include
+                    var include = '<div class="card"><div class="m-4"><p><strong>Include Code </strong><br><small class="text-muted">Copy and paste all of the code below into your essay page</small><br><code>{% raw %}{% include feature/image.html ' + filename + caption + alt + widthPercentage + ' %}{% endraw %}</code></p></div></div>';
+                    // output include
+                    document.getElementById('include-output').innerHTML = include;
+                // with a link
+                } else {
+                    // setup include
+                    var include = '<div class="card"><div class="m-4"><p><strong>Include Code </strong><br><small class="text-muted">Copy and paste all of the code below into your essay page</small><br><code>{% raw %}{% include feature/image.html ' + filename + caption + alt + widthPercentage + ' link="' + link + '" %}{% endraw %}</code></p></div></div>';
+                    // output include
+                    document.getElementById('include-output').innerHTML = include;
+                }
             });
+
+            // refresh button
+            document.getElementById('reload').addEventListener('click', function(){
+                window.location.reload();
+            });
+
         } else if(chosenType == 'pdf') {
             // set up pdf dropdown
             var pdfForm = '<p>test</p>'
