@@ -12,16 +12,31 @@ layout: about
 {% capture filename %}{{ filename | remove: '-topics' }}{% endcapture %}
 {% capture tabletopics %}{{ tabletopics }}{% endcapture %}
 
-{% include feature/topic-table.html data=filename topics=tabletopics %}
+<div class="card">
+    <div class="m-5">
+        {% include feature/topic-table.html data=filename topics=tabletopics %}
+        <p class="pt-4 text-center">
+            <strong>Include Code</strong><br>
+            <small class="text-muted">To use this table in your essay, copy and paste all of the code below into your essay page</small><br>
+            <code>{% raw %}{% include feature/topic-table.html data="{% endraw %}{{ filename | remove: '-topics' }}{% raw %}" topics="{% endraw %}{{ tabletopics }}{% raw %}" %}{% endraw %}</code>
+        </p>
+    </div>
+</div>
+
+<hr>
 
 {% for t in topics %}
 {% capture topic %}{{ t }}{% endcapture %}
-{% include feature/line-chart.html data=filename topic=topic %}
 
-<div class="text-center pb-4">
-<strong>Include</strong>:
-
-<code>{% raw %}{% include feature/line-chart.html data="{% endraw %}{{ filename | remove: '-topics' }}{% raw %}" topic="{% endraw %}{{ t }}{% raw %}" %}{% endraw %}</code>
+<div class="card">
+    <div class="m-5 text-center">
+        {% include feature/line-chart.html data=filename topic=topic %}
+        <p>
+            <strong>Include Code</strong><br>
+            <small class="text-muted">To use this visualization in your essay, copy and paste all of the code below into your essay page</small><br>
+            <code>{% raw %}{% include feature/line-chart.html data="{% endraw %}{{ filename | remove: '-topics' }}{% raw %}" topic="{% endraw %}{{ t }}{% raw %}" %}{% endraw %}</code>
+        </p>
+    </div>
 </div>
 
 {% unless forloop.last %}
