@@ -4,6 +4,8 @@ layout: about
 permalink: /essay-01.html
 ---
 
+{% include feature/pdf.html filename="demo_002.pdf" caption="demo" alt="Document representing demo" width="100" %}
+
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
 Curabitur maximus nisl magna, at blandit quam interdum sit amet. 
 Proin consequat ultricies ante, volutpat porttitor dui luctus non.
