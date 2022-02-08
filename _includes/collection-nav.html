@@ -28,13 +28,7 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle{% if childStubs contains page.url %} active{% endif %}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Topic Visualizations</a>
                     <div class="dropdown-menu">
-                        {% for file in site.data.topics %}
-                        {% assign filename = file[0] %}
-                        {% assign topics = site.data.topics[filename] | where_exp: 'item', 'item.topicname != nil' | map: 'topicname' %}
-                        {% for t in topics limit:1 %}
-                        <a class="dropdown-item {% if page.url == filename %}active{% endif %}" href="{{ filename | prepend: 'topics/' | append: '.html' | relative_url }}">{{ filename | replace: '-', ' ' | replace: 'sotu', 'State of the Union' | replace: 'party platforms', 'Party Platforms' | replace: '20th century', '1900-2000' | replace: '1900 1945', '1900-1945' | replace: '1900 1944', '1900-1944' | replace: '1946 2000', '1946-2000' | replace: '1948 2000', '1948-2000'| remove: ' all' | remove: ' topics' }}</a>
-                        {% endfor %}
-                        {% endfor -%}
+                        {% include topic-viz-nav-dropdowns.html %}
                     </div>
                 </li>
             </ul>

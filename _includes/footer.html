@@ -19,6 +19,12 @@
                     {% endif %}
                     </li>
                     {%- endfor -%}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link text-light dropdown-toggle{% if childStubs contains page.url %} active{% endif %}" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Topic Visualizations</a>
+                        <div class="dropdown-menu">
+                            {% include topic-viz-nav-dropdowns.html %}
+                        </div>
+                    </li>
                 </ul>
             </nav>
 
