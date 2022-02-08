@@ -10,9 +10,9 @@ credits: true
 
 {% include feature/jumbotron.html objectid="https://cdil.lib.uidaho.edu/images/palouse_sm.jpg" %}
 
-{% include feature/nav-menu.html sections="About the Collection" %}
+{% include feature/nav-menu.html sections="About the Project" %}
 
-## About the Collection
+## About the Project
 
 This site is generated using [CollectionBuilder-GH](https://collectionbuilding.github.io/gh/), a project to create a free and simple digital collection using [GitHub Pages](https://pages.github.com/) from: 
 
