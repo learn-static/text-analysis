@@ -41,9 +41,11 @@
                 image_id.appendChild(createDropItem(allImages));
             };
 
+            // define image element
             var image = document.getElementById('image-upload');
             var btn = document.getElementById('generate');
 
+            // generate include
             btn.addEventListener('click', function(){
                 var chosenImage = image.value;
                 var altText = document.getElementById('altText').value;
