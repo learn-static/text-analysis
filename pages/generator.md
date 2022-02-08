@@ -11,11 +11,13 @@ custom-foot: js/include-js.html
     <div class="form-group">
     <select class="custom-select" id="include-type">
         <option selected>Select include type</option>
-        <option value="image-upload">Image</option>
+        <option value="image">Image</option>
         <option value="pdf">PDF</option>
     </select>
     </div>
     <div id="form-content"></div>
-    <div id="include-output" class="pt-3"></div>
+  </div>
+  <div class="col-md-10">
+    <div id="include-output" class="pt-4"></div>
   </div>
 </div>

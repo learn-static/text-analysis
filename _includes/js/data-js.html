@@ -10,11 +10,11 @@ var allTopics = [
 ];
 
 var allImages = [
-    {% assign files = site.static_files | where_exp: 'f','f.path contains "objects/"' | map: 'name' %}{% for f in files %}{% if f contains '.jpg' or f contains '.png' %}{{ f | jsonify }}{% unless forloop.last %}, {% endunless %}{% endif %}{% endfor %}
+    {% assign files = site.static_files | where_exp: 'f','f.path contains "objects/"' | map: 'name' %}{% for f in files %}{% if f contains '.jpg' or f contains '.JPG' or f contains '.png' or f contains '.PNG' %}{{ f | jsonify }}{% unless forloop.last %}, {% endunless %}{% endif %}{% endfor %}
 ];
 
 var allDocs = [
-    {% assign files = site.static_files | where_exp: 'f','f.path contains "objects/"' | map: 'name' %}{% for f in files %}{% if f contains '.pdf' %}{{ f | jsonify }}{% unless forloop.last %}, {% endunless %}{% endif %}{% endfor %}
+    {% assign files = site.static_files | where_exp: 'f','f.path contains "objects/"' | map: 'name' %}{% for f in files %}{% if f contains '.pdf' or f contains '.PDF' %}{{ f | jsonify }}{% unless forloop.last %}, {% endunless %}{% endif %}{% endfor %}
 ];
 
 function getType() {
