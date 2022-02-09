@@ -7,8 +7,8 @@ custom-foot: js/include-js.html
 
 <div class="row justify-content-center">
   <div class="col-md-6">
-    <p>Use the form below to generate "include" code for images and documents.</p>
-    <div class="form-group">
+    <p>Use the form below to generate "include" code for images and documents. For more specific instructions see documentation at <a href="https://learn-static.github.io/hist-320/includes.html">https://learn-static.github.io/hist-320/includes.html</a>.</p>
+    <div class="form-group pt-3">
     <select class="custom-select" id="include-type">
         <option value="">Select include type</option>
         <option value="image">Image</option>
