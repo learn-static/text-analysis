@@ -1,7 +1,7 @@
 ##########
-# collectionbuilder-gh
-# Jekyll Digital Collection Generator, designed for GitHub Pages
-# https://github.com/CollectionBuilder/collectionbuilder-gh
+# learn-static text analysis
+# Jekyll framework for presenting digital history research, designed for GitHub Pages
+# https://github.com/learn-static/text-analysis
 ##########
 
 ##########
@@ -12,7 +12,7 @@
 #url: https://collectionbuilder.github.io 
 # baseurl is path to location on the domain if necessary e.g. /digital/hjccc
 # on GitHub Pages it is your github repository's name prefixed with a /
-#baseurl: /collectionbuilder-gh 
+#baseurl: /text-analysis
 # location of code, the full url to your github repository
 source-code: https://github.com/learn-static/text-analysis
 
@@ -22,19 +22,12 @@ source-code: https://github.com/learn-static/text-analysis
 # title of site appears in banner
 title: Analyzing Political Text of The 20th Century
 # tagline, a short phrase that will appear throughout the site in the top banner
-tagline: a text analysis project for HIST 320, Spring 2022 University of Idaho
+tagline: A multimedia project for HIST 320, a Spring 2022 course at the University of Idaho
 # description appears in meta tags and other locations
 # this description might appear in search result lists, keep around 160 characters max
-description: "CollectionBuilder-GH is a template for creating small digital collection exhibits on GitHub Pages designed for teaching digital library skills"
-# creator of the digital collection, to appear in meta tags; we typically use our GitHub usernames but feel free to just use your name
-author: owikle
-
-##########
-# COLLECTION SETTINGS
-#
-# Set the metadata for your collection (the name of the csv file in your _data directory that describes the objects in your collection) 
-# Use the filename of your CSV **without** the ".csv" extension! E.g. _data/demo-metadata.csv --> "demo-metadata"
-metadata: demo-metadata 
+description: "Learn-Static Text Analysis is a template for creating digital history projects on GitHub Pages"
+# creator of the digital project, to appear in meta tags; we typically use our GitHub usernames but feel free to just use your name
+author: collectionbuilder
 
 # collection
 collections:
