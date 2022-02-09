@@ -1,29 +1,34 @@
+{% assign all_object_filenames = site.static_files | where_exp: 'f','f.path contains "objects/"' | map: 'name' %}
+{% capture images %}{% for f in all_object_filenames %}{% assign ext = f | downcase %}{% if ext contains '.jpg' or ext contains '.jpeg' or ext contains '.png' or ext contains '.gif' %}{{ f }};{% endif %}{% endfor %}{% endcapture %}
+{% assign images = images | split: ';' | compact %}
+{% capture pdfs %}{% for f in all_object_filenames %}{% assign ext = f | downcase %}{% if ext contains '.pdf' %}{{ f }};{% endif %}{% endfor %}{% endcapture %}
+{% assign pdfs = pdfs | split: ';' | compact %}
 <script>
     var allImages = [
-        {% assign files = site.static_files | where_exp: 'f','f.path contains "objects/"' | map: 'name' %}{% for f in files %}{% if f contains '.jpg' or f contains '.png' %}{{ f | jsonify }}{% unless forloop.last %}, {% endunless %}{% endif %}{% endfor %}
+        {% for f in images %}{{ f | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}
     ];
 
     var allDocs = [
-        {% assign files = site.static_files | where_exp: 'f','f.path contains "objects/"' | map: 'name' %}{% for f in files %}{% if f contains '.pdf' or f contains '.PDF' %}{{ f | jsonify }}{% unless forloop.last %}, {% endunless %}{% endif %}{% endfor %}
+        {% for f in pdfs %}{{ f | jsonify }}{% unless forloop.last %}, {% endunless %}{% endfor %}
     ];
 
     function getType() {
         var chosenType = this.value;
         if(chosenType == 'image') {
             // set up image dropdown
-            var imageForm = '<div class="form-group"><label for="image-upload">Image filename:</label><select class="custom-select" id="image-upload" aria-describedby="chooseImage"><option>Select an image file</option></select></div>'
+            var imageForm = '<div class="form-group"><label for="image-upload">Image filename:</label><select class="custom-select" id="image-upload" aria-describedby="chooseImage"><option>Select an image file</option></select></div>';
             
             // add caption entry
-            imageForm += '<div class="form-group"><label for="imageCaption">Image caption:</label><input class="form-control" id="imageCaption" placeholder="Describe image"></div>'
+            imageForm += '<div class="form-group"><label for="imageCaption">Image caption:</label><input class="form-control" id="imageCaption" placeholder="Describe image"></div>';
 
             // add image width
-            imageForm += '<div class="form-group"><label for="imageWidth">Image width:</label><select class="custom-select" id="image-width" aria-describedby="imageWidth"><option>Select an image width</option><option value="25">25%</option><option value="50">50%</option><option value="75">75%</option><option value="100">100%</option></select></div>'
+            imageForm += '<div class="form-group"><label for="imageWidth">Image width:</label><select class="custom-select" id="image-width" aria-describedby="imageWidth"><option>Select an image width</option><option value="25">25%</option><option value="50">50%</option><option value="75">75%</option><option value="100">100%</option></select></div>';
 
             // add image link (optional)
-            imageForm += '<div class="form-group"><label for="imageLink">Image link (optional):</label><input class="form-control" id="imageLink" placeholder="Add a link to where you found your image"></div>'
+            imageForm += '<div class="form-group"><label for="imageLink">Image link (optional):</label><input class="form-control" id="imageLink" placeholder="Add a link to where you found your image"></div>';
 
             // add submit button
-            imageForm += '<button type="submit" id="generate" class="btn btn-primary mr-3">Submit</button><button id="reload" class="btn btn-success">Refresh</button>'
+            imageForm += '<button type="submit" id="generate" class="btn btn-primary mr-3">Submit</button><button id="reload" class="btn btn-success">Refresh</button>';
 
             // add image form to page
             document.getElementById('form-content').innerHTML = imageForm;
@@ -88,16 +93,16 @@
 
         } else if(chosenType == 'pdf') {
             // set up pdf dropdown
-            var pdfForm = '<div class="form-group"><label for="pdf">Document filename:</label><select class="custom-select" id="pdf" aria-describedby="chooseImage"><option>Select a document</option></select></div>'
+            var pdfForm = '<div class="form-group"><label for="pdf">Document filename:</label><select class="custom-select" id="pdf" aria-describedby="chooseImage"><option>Select a document</option></select></div>';
             
             // add caption entry
-            pdfForm += '<div class="form-group"><label for="pdfCaption">Document caption:</label><input class="form-control" id="pdfCaption" placeholder="Describe document"></div>'
+            pdfForm += '<div class="form-group"><label for="pdfCaption">Document caption:</label><input class="form-control" id="pdfCaption" placeholder="Describe document"></div>';
 
             // add image width
-            pdfForm += '<div class="form-group"><label for="pdfWidth">Document width:</label><select class="custom-select" id="pdfWidth" aria-describedby="imageWidth"><option>Select a document width</option><option value="25">25%</option><option value="50">50%</option><option value="75">75%</option><option value="100">100%</option></select></div>'
+            pdfForm += '<div class="form-group"><label for="pdfWidth">Document width:</label><select class="custom-select" id="pdfWidth" aria-describedby="imageWidth"><option>Select a document width</option><option value="25">25%</option><option value="50">50%</option><option value="75">75%</option><option value="100">100%</option></select></div>';
 
             // add submit button
-            pdfForm += '<button type="submit" id="generate" class="btn btn-primary mr-3">Submit</button><button id="reload" class="btn btn-success">Refresh</button>'
+            pdfForm += '<button type="submit" id="generate" class="btn btn-primary mr-3">Submit</button><button id="reload" class="btn btn-success">Refresh</button>';
 
             // add pdf form to page
             document.getElementById('form-content').innerHTML = pdfForm;
