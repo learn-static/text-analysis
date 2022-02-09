@@ -2,61 +2,9 @@
 layout: home-infographic
 title: Home
 permalink: /
+credits: true
 ---
 
-{% comment %}
-{% for files in site.data.topics %}
-{{ files[0] }}
-{% endfor %}
-{% endcomment %}
+# Multimedia essay project
 
-{% comment %}
-{% for file in site.data.topics %}
-{% assign filename = file[0] %}
-{% assign topics = site.data.topics[filename] | map: 'topicname' %}
-{% for t in topics limit:2 %}
-{% unless t == nil %}
-{{ filename | replace: '-', ' ' | replace: 'sotu', 'State of the Union' | replace: 'party platforms', 'Party Platforms' | remove: ' all' }}
-{% endunless %}
-{% endfor %}
-{% endfor -%}
-{% endcomment %}
-
-{% comment %}
-{% for file in site.data.topics %}
-{% assign filename = file[0] %}
-{% assign topics = site.data.topics[filename] | where_exp: 'item', 'item.topicname != nil' | map: 'topicname' %}
-{% for t in topics limit:1 %}
-{{ filename }}
-{% endfor %}
-{% endfor -%}
-{% endcomment %}
-
-
-{% comment %}
-{% capture whole %}{{ filename }}#{{ foo }}{% endcapture %}
-{% assign wholething = whole | split: '#' %}
-{% for w in wholething %}
-{{ w }}
-{% endfor %}
-{% endcomment %}
-
-{% comment %}
-{% for files in site.data.topics %}
-{% assign filecontent = files[1] %}
-{% for f in filecontent %}
-{% if f.topicname %}
-{{ files[0] }}
-{% endif %}
-{% endfor -%}
-{% endfor -%}
-{% endcomment %}
-
-{% comment %}
-{% for files in site.data.topics %}
-{% assign filecontent = files[1] %}
-{% for f in filecontent %}
-{{ f.topicname }}
-{% endfor %}
-{% endfor -%}
-{% endcomment %}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur maximus nisl magna, at blandit quam interdum sit amet. Proin consequat ultricies ante, volutpat porttitor dui luctus non. Duis laoreet metus nec cursus mollis. Proin molestie lorem sapien, sit amet placerat orci vestibulum eget. Nulla facilisi. Praesent pellentesque sapien vitae aliquam fermentum. Sed volutpat feugiat magna a fringilla. Suspendisse potenti. Curabitur accumsan, lorem vitae tempor lobortis, justo nisl auctor lacus, vel lacinia tellus ante ac leo. Duis efficitur ac felis vitae commodo. Nam faucibus semper mauris at aliquet.
