@@ -10,7 +10,7 @@ custom-foot: js/include-js.html
     <p>Use the form below to generate "include" code for images and documents.</p>
     <div class="form-group">
     <select class="custom-select" id="include-type">
-        <option selected>Select include type</option>
+        <option value="">Select include type</option>
         <option value="image">Image</option>
         <option value="pdf">PDF</option>
     </select>

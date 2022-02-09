@@ -20,8 +20,8 @@
             // set image form
             var imageForm = 
                 `<div class="form-group">
-                    <label for="image-upload">Image filename:</label>
-                    <select class="custom-select" id="image-upload" aria-describedby="chooseImage">
+                    <label for="imageFile">Image filename:</label>
+                    <select class="custom-select" id="imageFile">
                         <option value="">Select an image file</option>
                         ${imageOptions}
                     </select>
@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label for="imageWidth">Image width (optional):</label>
-                    <select class="custom-select" id="image-width" aria-describedby="imageWidth">
+                    <select class="custom-select" id="imageWidth">
                         <option value="">Select an image width</option>
                         <option value="25">25%</option>
                         <option value="50">50%</option>
@@ -60,10 +60,10 @@
             // generate include
             btn.addEventListener('click', function(){
                 // get include options, check if blank, and set up in template
-                var includeFilename = document.getElementById('image-upload').value ? ` filename="${document.getElementById('image-upload').value}"` : "";
+                var includeFilename = document.getElementById('imageFile').value ? ` filename="${document.getElementById('imageFile').value}"` : "";
                 var includeAlt = document.getElementById('imageAlt').value ? ` alt="${document.getElementById('imageAlt').value}"` : "";
                 var includeCaption = document.getElementById('imageCaption').value ? ` caption="${document.getElementById('imageCaption').value}"` : "";
-                var includeWidth = document.getElementById('image-width').value ? ` width="${document.getElementById('image-width').value}"` : "";
+                var includeWidth = document.getElementById('imageWidth').value ? ` width="${document.getElementById('imageWidth').value}"` : "";
                 var includeLink = document.getElementById('imageLink').value ? ` link="${document.getElementById('imageLink').value}"` : "";
 
                 // check required options
@@ -97,62 +97,67 @@
             });
 
         } else if(chosenType == 'pdf') {
-            // set up pdf dropdown
-            var pdfForm = '<div class="form-group"><label for="pdf">Document filename:</label><select class="custom-select" id="pdf" aria-describedby="chooseImage"><option>Select a document</option></select></div>';
-            
-            // add caption entry
-            pdfForm += '<div class="form-group"><label for="pdfCaption">Document caption:</label><input class="form-control" id="pdfCaption" placeholder="Describe document"></div>';
+            // set up pdf options
+            var pdfOptions = allDocs.map(i => `<option value="${i}">${i}</option>`).join(" ");
 
-            // add image width
-            pdfForm += '<div class="form-group"><label for="pdfWidth">Document width:</label><select class="custom-select" id="pdfWidth" aria-describedby="imageWidth"><option>Select a document width</option><option value="25">25%</option><option value="50">50%</option><option value="75">75%</option><option value="100">100%</option></select></div>';
-
-            // add submit button
-            pdfForm += '<button type="submit" id="generate" class="btn btn-primary mr-3">Submit</button><button id="reload" class="btn btn-success">Refresh</button>';
+            // set image form
+            var pdfForm = 
+                `<div class="form-group">
+                    <label for="pdfFile">Document filename:</label>
+                    <select class="custom-select" id="pdfFile"">
+                        <option value="">Select a document</option>
+                        ${pdfOptions}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="pdfCaption">Document caption (optional):</label>
+                    <input class="form-control" id="pdfCaption" placeholder="Text caption for document">
+                </div>
+                <div class="form-group">
+                    <label for="pdfWidth">Document width (optional):</label>
+                    <select class="custom-select" id="pdfWidth"">
+                        <option value="">Select a document width</option>
+                        <option value="25">25%</option>
+                        <option value="50">50%</option>
+                        <option value="75">75%</option>
+                        <option value="100">100%</option>
+                    </select>
+                </div>
+                <button type="submit" id="generate" class="btn btn-primary mr-3">Submit</button>
+                <button id="reload" class="btn btn-success">Refresh</button>`;
 
             // add pdf form to page
             document.getElementById('form-content').innerHTML = pdfForm;
 
-            // create pdf dropdown
-            for (let i = 0; i < allDocs.length; i++) {
-                function createDropItem(docs) {
-                    var option = document.createElement('option');
-                    option.setAttribute('value', docs[i]);
-                    option.textContent = docs[i];
-                    return option;
-                };
-
-                // add items to image dropdown
-                var docId = document.getElementById('pdf');
-                docId.appendChild(createDropItem(allDocs));
-            };
-
-            // define doc and width elements
-            var item = document.getElementById('pdf');
-            var width = document.getElementById('pdfWidth');
             // define button
             var btn = document.getElementById('generate');
 
             // generate include
             btn.addEventListener('click', function(){
-                var chosenItem = item.value;
-                var itemCaption = document.getElementById('pdfCaption').value;
-                var itemWidth = width.value;
+                // get include options, check if blank, and set up in template
+                var includeFilename = document.getElementById('pdfFile').value ? ` filename="${document.getElementById('pdfFile').value}"` : "";
+                var includeCaption = document.getElementById('pdfCaption').value ? ` caption="${document.getElementById('pdfCaption').value}"` : "";
+                var includeWidth = document.getElementById('pdfWidth').value ? ` width="${document.getElementById('pdfWidth').value}"` : "";
 
-                var filename = 'filename="' + chosenItem + '" ';
-                var caption = 'caption="' + itemCaption + '" ';
-                var alt = 'alt="Document representing ' + itemCaption + '" ';
-                var widthPercentage = 'width="' + itemWidth + '" ';
-
-                if (chosenItem == 'Select a document') {
-                    alert('Choose a document filename');
-                } else if (itemCaption == ''){
-                    alert('Document caption must be filled out');
-                } else if (itemWidth == 'Select a document width'){
-                    alert('Select a document width');
+                // check required options
+                if (includeFilename == "") {
+                    alert('Please choose a document filename!');
                 } else {
-                    // set up include
-                    var include = '<div class="card"><div class="m-4"><p><strong>Include Code </strong><br><small class="text-muted">Copy and paste all of the code below into your essay page</small><br><code>{% raw %}{% include feature/pdf.html ' + filename + caption + alt + widthPercentage + ' %}{% endraw %}</code></p></div></div>';
-                    // output include
+
+                    // set up include code 
+                    var include = 
+                        `<div class="card">
+                            <div class="m-4">
+                                <p>
+                                    <strong>Include Code </strong><br>
+                                    <small class="text-muted">Copy and paste all of the code below into your essay page</small><br>
+                                    <code>
+                                    {% raw %}{% include feature/image.html${includeFilename}${includeCaption}${includeWidth} %}{% endraw %}
+                                    </code>
+                                </p>
+                            </div>
+                        </div>`;
+                    // add to page
                     document.getElementById('include-output').innerHTML = include;
                 }
             });
@@ -164,6 +169,6 @@
         }
     };
 
-    var include_sel = document.getElementById("include-type");
-    include_sel.addEventListener('change', getType);
+    var includeSelection = document.getElementById("include-type");
+    includeSelection.addEventListener('change', getType);
 </script>
