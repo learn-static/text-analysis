@@ -123,6 +123,10 @@
                         <option value="100">100%</option>
                     </select>
                 </div>
+                <div class="form-group">
+                    <label for="pdfLink">Document link (optional):</label>
+                    <input class="form-control" id="pdfLink" placeholder="Add a link to where you found your document">
+                </div>
                 <button type="submit" id="generate" class="btn btn-primary mr-3">Submit</button>
                 <button id="reload" class="btn btn-success">Refresh</button>`;
 
@@ -138,6 +142,7 @@
                 var includeFilename = document.getElementById('pdfFile').value ? ` filename="${document.getElementById('pdfFile').value}"` : "";
                 var includeCaption = document.getElementById('pdfCaption').value ? ` caption="${document.getElementById('pdfCaption').value}"` : "";
                 var includeWidth = document.getElementById('pdfWidth').value ? ` width="${document.getElementById('pdfWidth').value}"` : "";
+                var includeLink = document.getElementById('pdfLink').value ? ` link="${document.getElementById('pdfLink').value}"` : "";
 
                 // check required options
                 if (includeFilename == "") {
@@ -152,7 +157,7 @@
                                     <strong>Include Code </strong><br>
                                     <small class="text-muted">Copy and paste all of the code below into your essay page</small><br>
                                     <code>
-                                    {% raw %}{% include feature/image.html${includeFilename}${includeCaption}${includeWidth} %}{% endraw %}
+                                    {% raw %}{% include feature/pdf.html${includeFilename}${includeCaption}${includeWidth}${includeLink} %}{% endraw %}
                                     </code>
                                 </p>
                             </div>

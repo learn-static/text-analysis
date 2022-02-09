@@ -16,6 +16,7 @@
     - "width" = will use responsive sizing to set the % size on desktop (will be 100% on mobile), choose from "25", "50", "75", or "100" (optional)
     - "height" = set embed object height in px (rather than responsive size), e.g. "800px" (optional)
     - "ratio" = use Bootstrap embed ratio options "21by9", "16by9", "4by3", or "1by1" to customize the responsive aspect ratio if not using height. 16by9 is default. (optional)
+    - "link" = The link option allows you to manually add an external link for the pdf. Link will only be added if the link variable is set.
 
     Note: if you have issues make sure the item is a PDF file!
 
@@ -24,16 +25,18 @@
 {%- capture src -%}{{ include.filename }}{%- endcapture -%}
 {% else %}
 {%- capture src -%}{{ include.filename | prepend: '/objects/' | relative_url }}{%- endcapture -%}
+{% endif %}
 {%- capture pdf_link -%}{{ src }}{%- endcapture -%}
 {%- capture pdf_caption -%}{{ include.caption }}{%- endcapture -%}
-{% endif %}
+{%- capture ext_link -%}{{ include.link }}{%- endcapture -%}
+
 <div class="text-center">
     <figure class="figure border rounded p-1 feature-w-{{ include.width | default: '100' }}">
         <div class="{% unless include.height %}embed-responsive embed-responsive-{{ include.ratio | default: '1by1' }}{% endunless %}">
             <object class="embed-responsive-item" {% if include.height %}width="100%" height="{{ include.height }}"{% endif %} data="{{ src }}">
-                <p>The PDF is not rendering in your browser. Please use the link below to download the PDF.</p>
+                <p>The PDF is not rendering in your browser. Please use <a href="{{ pdf_link }}">this link</a> below to download the PDF.</p>
             </object>
         </div>
-        {% unless include.caption == false %}<figcaption class="figure-caption"><a href="{{ pdf_link }}">{{ pdf_caption }}</a></figcaption>{% endunless %}
+        {% unless include.caption == false %}<figcaption class="figure-caption">{% if include.link %}<a href="{{ ext_link }}">{{ pdf_caption }}</a>{% else %}{{ pdf_caption }}{% endif %}</figcaption>{% endunless %}
     </figure>
 </div>
