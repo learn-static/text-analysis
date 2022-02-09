@@ -15,73 +15,78 @@
     function getType() {
         var chosenType = this.value;
         if(chosenType == 'image') {
-            // set up image dropdown
-            var imageForm = '<div class="form-group"><label for="image-upload">Image filename:</label><select class="custom-select" id="image-upload" aria-describedby="chooseImage"><option>Select an image file</option></select></div>';
-            
-            // add caption entry
-            imageForm += '<div class="form-group"><label for="imageCaption">Image caption:</label><input class="form-control" id="imageCaption" placeholder="Describe image"></div>';
-
-            // add image width
-            imageForm += '<div class="form-group"><label for="imageWidth">Image width:</label><select class="custom-select" id="image-width" aria-describedby="imageWidth"><option>Select an image width</option><option value="25">25%</option><option value="50">50%</option><option value="75">75%</option><option value="100">100%</option></select></div>';
-
-            // add image link (optional)
-            imageForm += '<div class="form-group"><label for="imageLink">Image link (optional):</label><input class="form-control" id="imageLink" placeholder="Add a link to where you found your image"></div>';
-
-            // add submit button
-            imageForm += '<button type="submit" id="generate" class="btn btn-primary mr-3">Submit</button><button id="reload" class="btn btn-success">Refresh</button>';
+            // set up image options
+            var imageOptions = allImages.map(i => `<option value="${i}">${i}</option>`).join(" ");
+            // set image form
+            var imageForm = 
+                `<div class="form-group">
+                    <label for="image-upload">Image filename:</label>
+                    <select class="custom-select" id="image-upload" aria-describedby="chooseImage">
+                        <option value="">Select an image file</option>
+                        ${imageOptions}
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="imageAlt">Image alt text (required for accessibility):</label>
+                    <input class="form-control" id="imageAlt" placeholder="Describe contents of image">
+                </div>
+                <div class="form-group">
+                    <label for="imageCaption">Image caption (optional):</label>
+                    <input class="form-control" id="imageCaption" placeholder="Text caption for image">
+                </div>
+                <div class="form-group">
+                    <label for="imageWidth">Image width (optional):</label>
+                    <select class="custom-select" id="image-width" aria-describedby="imageWidth">
+                        <option value="">Select an image width</option>
+                        <option value="25">25%</option>
+                        <option value="50">50%</option>
+                        <option value="75">75%</option>
+                        <option value="100">100%</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="imageLink">Image link (optional):</label>
+                    <input class="form-control" id="imageLink" placeholder="Add a link to where you found your image">
+                </div>
+                <button type="submit" id="generate" class="btn btn-primary mr-3">Submit</button>
+                <button id="reload" class="btn btn-success">Refresh</button>`;
 
             // add image form to page
             document.getElementById('form-content').innerHTML = imageForm;
 
-            // create image dropdown
-            for (let i = 0; i < allImages.length; i++) {
-                function createDropItem(images) {
-                    var option = document.createElement('option');
-                    option.setAttribute('value', images[i]);
-                    option.textContent = images[i];
-                    return option;
-                };
-
-                // add items to image dropdown
-                var imageId = document.getElementById('image-upload');
-                imageId.appendChild(createDropItem(allImages));
-            };
-
-            // define image and width elements
-            var item = document.getElementById('image-upload');
-            var width = document.getElementById('image-width');
             // define button
             var btn = document.getElementById('generate');
 
             // generate include
             btn.addEventListener('click', function(){
-                var chosenItem = item.value;
-                var itemCaption = document.getElementById('imageCaption').value;
-                var itemWidth = width.value;
-                var link = document.getElementById('imageLink').value;
+                // get include options, check if blank, and set up in template
+                var includeFilename = document.getElementById('image-upload').value ? ` filename="${document.getElementById('image-upload').value}"` : "";
+                var includeAlt = document.getElementById('imageAlt').value ? ` alt="${document.getElementById('imageAlt').value}"` : "";
+                var includeCaption = document.getElementById('imageCaption').value ? ` caption="${document.getElementById('imageCaption').value}"` : "";
+                var includeWidth = document.getElementById('image-width').value ? ` width="${document.getElementById('image-width').value}"` : "";
+                var includeLink = document.getElementById('imageLink').value ? ` link="${document.getElementById('imageLink').value}"` : "";
 
-                var filename = 'filename="' + chosenItem + '" ';
-                var caption = 'caption="' + itemCaption + '" ';
-                var alt = 'alt="Image of ' + itemCaption + '" ';
-                var widthPercentage = 'width="' + itemWidth + '" ';
-
-                if (chosenItem == 'Select an image file') {
-                    alert('Choose an image filename');
-                } else if (itemCaption == ''){
-                    alert('Image caption must be filled out');
-                } else if (itemWidth == 'Select an image width'){
-                    alert('Select an image width');
-                // without a link
-                } else if (link == '' ){
-                    // setup include
-                    var include = '<div class="card"><div class="m-4"><p><strong>Include Code </strong><br><small class="text-muted">Copy and paste all of the code below into your essay page</small><br><code>{% raw %}{% include feature/image.html ' + filename + caption + alt + widthPercentage + ' %}{% endraw %}</code></p></div></div>';
-                    // output include
-                    document.getElementById('include-output').innerHTML = include;
-                // with a link
+                // check required options
+                if (includeFilename == "") {
+                    alert('Please choose an image filename!');
+                } else if (includeAlt == "") {
+                    alert('Image alt text must be filled in!');
                 } else {
-                    // set up include
-                    var include = '<div class="card"><div class="m-4"><p><strong>Include Code </strong><br><small class="text-muted">Copy and paste all of the code below into your essay page</small><br><code>{% raw %}{% include feature/image.html ' + filename + caption + alt + widthPercentage + ' link="' + link + '" %}{% endraw %}</code></p></div></div>';
-                    // output include
+
+                    // set up include code 
+                    var include = 
+                        `<div class="card">
+                            <div class="m-4">
+                                <p>
+                                    <strong>Include Code </strong><br>
+                                    <small class="text-muted">Copy and paste all of the code below into your essay page</small><br>
+                                    <code>
+                                    {% raw %}{% include feature/image.html${includeFilename}${includeAlt}${includeCaption}${includeWidth}${includeLink} %}{% endraw %}
+                                    </code>
+                                </p>
+                            </div>
+                        </div>`;
+                    // add to page
                     document.getElementById('include-output').innerHTML = include;
                 }
             });
