@@ -4,7 +4,7 @@ layout: about
 permalink: /essay-01.html
 ---
 
-{% include feature/nav-menu.html sections="Introduction;Conclusion;Sources" %}
+{% include feature/nav-menu.html sections="Introduction;Conclusion;Notes" %}
 
 # My Essay Title
 
@@ -58,6 +58,6 @@ Include a pdf:
 
 More documentation on how to write your essay in Markdown--as well as how to include images, pdfs, and topic visualizations--can be found at <https://learn-static.github.io/hist-320/web-setup.html>.
 
-## Sources
+## Notes
 
-[^1]: Roberts, Carol. [Treasure trove of photos found in basement of Tabor building](https://www.lib.uidaho.edu/digital/tabor/items/tabor0364.html).
+[^1]: Katie Kitamura, A Separation (New York: Riverhead Books, 2017), 25.

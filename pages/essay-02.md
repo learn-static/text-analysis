@@ -4,7 +4,7 @@ layout: about
 permalink: /essay-02.html
 ---
 
-{% include feature/nav-menu.html sections="Introduction;Conclusion;Sources" %}
+{% include feature/nav-menu.html sections="Introduction;Conclusion;Notes" %}
 
 # My Essay Title
 
@@ -12,4 +12,4 @@ permalink: /essay-02.html
 
 ## Conclusion
 
-## Sources
+## Notes
