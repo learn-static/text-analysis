@@ -1,33 +1,6 @@
-# collectionbuilder-gh
+# Learn-STATIC Text Analysis Template
 
-A project to generate a free and simple digital collection site using [GitHub Pages](https://pages.github.com/) given:
-
-- a CSV of collection metadata
-- a folder of JPEG images or PDF documents
-
-Gather your digital objects together and create your metadata using the [CollectionBuilder-GH Metadata Template](https://docs.google.com/spreadsheets/d/1Uv9ytll0hysMOH1j-VL1lZx6PWvc1zf3L35sK_4IuzI/edit?usp=sharing). 
-Then click the green "use this template" button above to create your repository, add your metadata and configure the repository to fit your collection and settings.
-
-See [Getting Started Docs](https://collectionbuilder.github.io/cb-docs/) for detailed information. 
-
-View the [demo site](https://collectionbuilder.github.io/collectionbuilder-gh/).
-
-**Note:** 
-Since `collectionbuilder-gh` uses [GitHub Pages](https://pages.github.com/), it is only suitable for small collections, with lower resolution images. GitHub repositories are limited to 1GB.
-
-## Demo CollectionBuilder with our Workshop Tutorial
-
-If you'd like to demo CollectionBuilder, we've made [a step-through tutorial](https://collectionbuilder.github.io/workshop/gh/) using the following spreadsheet and zipped directory. (The tutorial uses items from our [Psychiana Digital Collection](https://www.lib.uidaho.edu/digital/psychiana/), which is worth a visit!)
-
-Metadata is drawn from the following Google Sheet: 
-
-- [Psychiana Digital Collection Metadata](https://drive.google.com/open?id=1x48Te3duPAxh53foEihQVKTfCKUjaCCbH7TrMMd_yU4)
-
-Objects are collected in this zip file: 
-
-- [Psychiana Digital Collection Media Files](https://www.lib.uidaho.edu/collectionbuilder/demo-objects.zip) (Includes image files, pdfs, and mp3s)
-
-These files are stored in this [CollectionBuilder-gh Google Drive Folder](https://drive.google.com/drive/folders/1dTO8-3lusaKBdYyauyg_ziVqwLA4Fons?usp=sharing), along with some other metadata sheets and zipped object directories that can be used for other workshops and demonstrations.
+A project to generate a free and simple digital project site using [GitHub Pages](https://pages.github.com/), built with the [CollectionBuilder](https://collectionbuilder.github.io/) framework.
 
 ## More on CollectionBuilder
 

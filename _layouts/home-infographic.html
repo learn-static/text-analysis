@@ -1,11 +1,11 @@
 ---
-layout: page
+layout: default
 ---
 
-<div class="row justify-content-center">
-  <div class="col-md-7">
-    {{ content }}
-  </div>
+<div class="container my-4 about-contents">
+  {{ content }}
+  <hr>
 </div>
 
+{% include cb/data.html %}
 {% if page.credits == true %}{% include cb/credits.html %}{% endif %}
