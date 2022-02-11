@@ -23,9 +23,6 @@ source-code: https://github.com/learn-static/text-analysis
 title: Analyzing Political Text of The 20th Century
 # tagline, a short phrase that will appear throughout the site in the top banner
 tagline: A multimedia project for HIST 320, a Spring 2022 course at the University of Idaho
-# description appears in meta tags and other locations
-# this description might appear in search result lists, keep around 160 characters max
-description: "Learn-Static Text Analysis is a template for creating digital history projects on GitHub Pages"
 # creator of the digital project, to appear in meta tags; we typically use our GitHub usernames but feel free to just use your name
 author: collectionbuilder
 

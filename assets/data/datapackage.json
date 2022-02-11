@@ -8,7 +8,7 @@
     "profile": "data-package",
     "name": "{{ site.title | slugify }}-data",
     "title": "{{ site.title | escape }} Data",
-    "description": "Metadata and data derived from {{ site.title | escape }}. {{ site.description | escape }}",
+    "description": "Metadata and data derived from {{ site.title | escape }}. {{ site.tagline | escape }}",
     {% if site.keywords %}"keywords": {% assign keywords = site.keywords | split: ';' %} {{ keywords | jsonify }},{% endif %}
     "homepage": "{{ '/' | absolute_url }}",
     "contributors": [

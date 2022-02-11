@@ -10,7 +10,7 @@
     "title": "{{ site.title }}",
     "url": "{{ '/' | absolute_url }}",
     "image": "{% include image/featured-image.html %}", 
-    "description": "{{ site.description }}",
+    "description": "{{ site.tagline }}",
     "publisher": { 
         "name": "{{ site.author }}"
     },
