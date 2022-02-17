@@ -56,7 +56,7 @@ Include a pdf:
 
 ## Conclusion
 
-More documentation on how to write your essay in Markdown--as well as how to include images, pdfs, and topic visualizations--can be found at <https://learn-static.github.io/hist-320/web-setup.html>.
+More documentation on how to write your essay in Markdown--as well as how to include images, pdfs, and topic visualizations--can be found at <https://learn-static.github.io/hist-320/topic-modeling.html>.
 
 ## Notes
 
