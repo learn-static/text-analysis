@@ -1,7 +1,7 @@
 ---
-title: Essay 2
+title: Essay
 layout: about
-permalink: /essay-02.html
+permalink: /essay.html
 ---
 
 {% include feature/nav-menu.html sections="Introduction;Conclusion;Notes" %}
