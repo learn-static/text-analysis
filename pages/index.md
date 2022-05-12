@@ -8,7 +8,7 @@ permalink: /
 
 Instructions for how to use this site to write your multimedia essay can be found at the accompanying documentation site, <https://learn-static.github.io/writing-with-visualizations/>.
 
-Your final essay will be written on the [Final Essay](/essay.html) page. 
+Your essay will be written on the [Essay](/essay.html) page. 
 
 Links to all of the State of the Union Addresses and Party Platforms used in our text analysis and topic modeling activities can be found on the [Data](/data.html) page.
 
