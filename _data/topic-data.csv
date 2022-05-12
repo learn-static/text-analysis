@@ -2,12 +2,4 @@ name,filename-topics,filename-documents,topics,iterations
 party-platforms-20th-century-all,party-platforms-20th-century-all-topics,party-platforms-20th-century-all-documents,10,1050
 party-platforms-20th-century-democratic,party-platforms-20th-century-democratic-topics,party-platforms-20th-century-democratic-documents,10,1050
 party-platforms-20th-century-republican,party-platforms-20th-century-republican-topics,party-platforms-20th-century-republican-documents,10,1050
-party-platforms-1900-1944-all,party-platforms-1900-1944-all-topics,party-platforms-1900-1944-all-documents,10,1050
-party-platforms-1900-1944-democratic,party-platforms-1900-1944-democratic-topics,party-platforms-1900-1944-democratic-documents,10,1050
-party-platforms-1900-1944-republican,party-platforms-1900-1944-republican-topics,party-platforms-1900-1944-republican-documents,10,1050
-party-platforms-1948-2000-all,party-platforms-1948-2000-all-topics,party-platforms-1948-2000-all-documents,10,1050
-party-platforms-1948-2000-democratic,party-platforms-1948-2000-democratic-topics,party-platforms-1948-2000-democratic-documents,10,1050
-party-platforms-1948-2000-republican,party-platforms-1948-2000-republican-topics,party-platforms-1948-2000-republican-documents,10,1050
 sotu-20th-century,sotu-20th-century-topics,sotu-20th-century-documents,10,1150
-sotu-1900-1945,sotu-1900-1945-topics,sotu-1900-1945-documents,10,1150
-sotu-1946-2000,sotu-1946-2000-topics,sotu-1946-2000-documents,10,1150
